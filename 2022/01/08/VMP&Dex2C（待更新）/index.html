@@ -18,23 +18,25 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="相关项目收集 ADVMP 一款七年前实现的vmp加固工具  DCC 一款比较新的dex2c的加固工具  nmmp 针对dex进行的vmp的保护  Android Dex-vmp虚拟保护技术  Dex控制流混淆 BlackObfuscator  DeClang 一款基于ollvm的混淆工具  kisskiss 基于特征识别的内存转储脱壳方法  zjdroid 基于 Xposed 的动态逆向分析框架">
+    <meta name="description" content="前言研究反混淆有没有意义？  一般而言应该是没有意义的……   这么多年过去了，连有实用意义的标准ollvm的反混淆都没有搞出来   就算ollvm的有了，改pass的那么多厂商的非标准混淆，又得从头去研究，没有通用方案   还有很多从原理上就无法反混淆的技术，比如(dex)vmp、Dex2C等   手动&#x2F;人工还原始终是无法被取代的，技术人员还是得掌握完整的混淆分析技巧   frida&#x2F;unidb">
 <meta property="og:type" content="article">
-<meta property="og:title" content="优秀项目收集">
-<meta property="og:url" content="http://example.com/2021/12/24/%E4%BC%98%E7%A7%80%E9%A1%B9%E7%9B%AE%E6%94%B6%E9%9B%86/index.html">
+<meta property="og:title" content="VMP&amp;Dex2C（待更新）">
+<meta property="og:url" content="http://example.com/2022/01/08/VMP&Dex2C%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89/index.html">
 <meta property="og:site_name" content="Theseus&#39;Blog">
-<meta property="og:description" content="相关项目收集 ADVMP 一款七年前实现的vmp加固工具  DCC 一款比较新的dex2c的加固工具  nmmp 针对dex进行的vmp的保护  Android Dex-vmp虚拟保护技术  Dex控制流混淆 BlackObfuscator  DeClang 一款基于ollvm的混淆工具  kisskiss 基于特征识别的内存转储脱壳方法  zjdroid 基于 Xposed 的动态逆向分析框架">
+<meta property="og:description" content="前言研究反混淆有没有意义？  一般而言应该是没有意义的……   这么多年过去了，连有实用意义的标准ollvm的反混淆都没有搞出来   就算ollvm的有了，改pass的那么多厂商的非标准混淆，又得从头去研究，没有通用方案   还有很多从原理上就无法反混淆的技术，比如(dex)vmp、Dex2C等   手动&#x2F;人工还原始终是无法被取代的，技术人员还是得掌握完整的混淆分析技巧   frida&#x2F;unidb">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-24T11:52:42.723Z">
-<meta property="article:modified_time" content="2021-12-24T11:52:42.723Z">
+<meta property="article:published_time" content="2022-01-08T13:47:34.898Z">
+<meta property="article:modified_time" content="2022-01-08T13:47:34.898Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="Android安全">
 <meta property="article:tag" content="Android脱壳">
+<meta property="article:tag" content="VMP">
+<meta property="article:tag" content="Dex2C">
 <meta property="article:tag" content="Android加固">
 <meta name="twitter:card" content="summary_large_image">
   
   
-  <title>优秀项目收集 - Theseus&#39;Blog</title>
+  <title>VMP&amp;Dex2C（待更新） - Theseus&#39;Blog</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -192,7 +194,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="优秀项目收集">
+            <span class="h2" id="subtitle" title="VMP&amp;Dex2C（待更新）">
               
             </span>
 
@@ -202,8 +204,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-24 19:52" pubdate>
-        2021年12月24日 晚上
+      <time datetime="2022-01-08 21:47" pubdate>
+        2022年1月8日 晚上
       </time>
     </span>
   
@@ -213,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      384 字
+      2.4k 字
     </span>
   
 
@@ -222,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      4 分钟
+      21 分钟
     </span>
   
 
@@ -259,51 +261,146 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">优秀项目收集</h1>
+            <h1 style="display: none">VMP&amp;Dex2C（待更新）</h1>
             
               <p class="note note-info">
                 
-                  本文最后更新于：15 天前
+                  本文最后更新于：几秒前
                 
               </p>
             
             <div class="markdown-body">
-              <h3 id="相关项目收集"><a href="#相关项目收集" class="headerlink" title="相关项目收集"></a>相关项目收集</h3><ul>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/chago/ADVMP">ADVMP</a> 一款七年前实现的vmp加固工具</p>
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>研究反混淆有没有意义？ </p>
+<p>一般而言应该是没有意义的…… </p>
+<ol>
+<li><p>这么多年过去了，连有实用意义的标准ollvm的反混淆都没有搞出来 </p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/amimo/dcc">DCC</a> 一款比较新的dex2c的加固工具</p>
+<li><p>就算ollvm的有了，改pass的那么多厂商的非标准混淆，又得从头去研究，没有通用方案 </p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/maoabc/nmmp">nmmp</a> 针对dex进行的vmp的保护</p>
+<li><p>还有很多从原理上就无法反混淆的技术，比如(dex)vmp、Dex2C等 </p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://geneblue.github.io/2019/09/13/android/sec--android-dex-vmp/">Android Dex-vmp虚拟保护技术</a></p>
+<li><p>手动/人工还原始终是无法被取代的，技术人员还是得掌握完整的混淆分析技巧 </p>
 </li>
-<li><p>Dex控制流混淆 <a target="_blank" rel="noopener" href="https://github.com/CodingGay/BlackObfuscator">BlackObfuscator</a></p>
+<li><p>frida/unidbg/aosp源码调用等技术出现之后，找到各种合适的点，去hook分析和主动调用，意义更大一些。</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/DeNA/DeClang">DeClang</a> 一款基于ollvm的混淆工具</p>
+</ol>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="文章收集"><a href="#文章收集" class="headerlink" title="文章收集"></a>文章收集</h3><p>1、一种通过后端编译优化脱混淆壳的方法</p>
+<p>【简介】一种基于编译原理来实现和打造脱混淆壳的方案，内容与编译原理很接近，可以作为解决VMP这类型壳的思路，不过这个思路也是需要去进行优化的。</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-260626.htm">https://bbs.pediy.com/thread-260626.htm</a></p>
+<p>2、一种通过后端编译优化脱虚拟机壳的方法</p>
+<p>【简介】不同于上一篇的文章，内容是有实战环节，这个对抗虚拟机（VMP）的一种解决思路</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-266014.htm">https://bbs.pediy.com/thread-266014.htm</a></p>
+<p>3、360加固保免费版分析</p>
+<p>【简介】该加固中使用到大致如下的内容：</p>
+<p>（1）、SO加载动态解密</p>
+<p>（2）、自定义linker加载</p>
+<p>（3）、dex加密隐藏技术</p>
+<p>（4）、VMP化方法</p>
+<p>（5）、抹去了dex、so文件头</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-258511.htm">https://bbs.pediy.com/thread-258511.htm</a></p>
+<p>4、百度加固免费版分析及VMP修复</p>
+<p>【简介】这个加固中同样涉及到OLLVM混淆和VMP技术</p>
+<p>文中提到了修复vmp的过程，在回答中也提出了一个技巧就是在不还原ollvm的情况下去分析调试，还有就是过Debug.isDebuggerConnected检测</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-257926.htm">https://bbs.pediy.com/thread-257926.htm</a></p>
+<p>5、利用编译器优化干掉控制流平坦化flatten</p>
+<p>【简介】这个文章是借鉴上面的两篇文章进行的研究，对抗控制流平坦化，内容不过多解读，可以证明这个思路是一个不错的思路。</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-266323.htm">https://bbs.pediy.com/thread-266323.htm</a></p>
+<p>6、通过一款早期代码抽取壳入门学习 so 层分析</p>
+<p>【简介】这篇文章详细的记录了抽取式的加固的分析方案，其中涉及到很多基础的分析知识，是我们学习和分析的一个不错的好案例</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-260251.htm">https://bbs.pediy.com/thread-260251.htm</a></p>
+<p>7、分析邦邦加固</p>
+<p>【简介】upx加固so，脱壳并修复，过fart检测，最后手动调试</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-266247.htm">https://bbs.pediy.com/thread-266247.htm</a></p>
+<p>8、分析乐固加固</p>
+<p>【简介】其中涉及到olllvm混淆</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-266972.htm">https://bbs.pediy.com/thread-266972.htm</a></p>
+<p>9、分析360加固</p>
+<p>【简介】加固手段所有的壳大同小异，不过未来覆盖全面还是觉得这个文章是有必要探究一下的。</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-260049.htm">https://bbs.pediy.com/thread-260049.htm</a></p>
+<p>10、某企业级加固[四代壳]VMP解释执行+指令还原</p>
+<p>【简介】分析的样本应该是梆梆加固的企业版，但是作者并未把完整的样本放出来</p>
+<p>简单的介绍了如何上手分析VMP</p>
+<p>反调试手段（还是逃不过那17种）</p>
+<p>OLLVM混淆</p>
+<p>然后就是指令还原</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-257061.htm">https://bbs.pediy.com/thread-257061.htm</a></p>
+<p>11、爱加密-反调试-DumpDex-修复指令-重打包</p>
+<p>【简介】比较奇特的一点就是对信号反调试有讲解</p>
+<p>本篇文章更多的是反调试，修复指令，定制rom的方式修复，这个应该和FART生成bin文件是类似的。</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-249684-1.htm">https://bbs.pediy.com/thread-249684-1.htm</a></p>
+<p>12、某加固详细分析总结，另附该加固脱壳机</p>
+<p>【简介】算是加壳的原理解析吧，同时还有脱壳机存在，还是可以研究的，虽然没有vmp的知识，但是都是加固方面的</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-252828.htm">https://bbs.pediy.com/thread-252828.htm</a></p>
+<p>13、阿里壳分析和修复</p>
+<p>抽取式加固方案的分析</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-226480.htm">https://bbs.pediy.com/thread-226480.htm</a></p>
+<p>14、某VMP壳原理分析笔记</p>
+<p>【简介】</p>
+<ul>
+<li><p>反调试</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/strazzere/android-unpacker">kisskiss</a> 基于特征识别的内存转储脱壳方法</p>
+<li><ul>
+<li>时间反调试</li>
+<li>rtld_db_dlactivity反调试</li>
+</ul>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/halfkiss/ZjDroid">zjdroid</a> 基于 Xposed 的动态逆向分析框架</p>
+<li><ul>
+<li>traceid反调试</li>
+<li>端口反调试</li>
+</ul>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/zyq8709/DexHunter">Dexhunter </a>过修改系统源码实现主动的类加载</p>
+<li><p>linker部分：用来加载第二个so</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/rewhy/adaptiveunpacker">PackerGrind</a>  多层次监控的运行时数据收集 <a target="_blank" rel="noopener" href="https://www4.comp.polyu.edu.hk/~csxluo/Packergrind-TSE.pdf">paper</a></p>
+<li><ul>
+<li>装载</li>
+<li>创建soinfo</li>
+</ul>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/F8LEFT/FUPK3">FUPK3</a>  运行时系统数据提取以及重组</p>
+<li><ul>
+<li>链接</li>
+<li>dump second so</li>
+</ul>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://tigress.wtf/">tigress</a> 混淆工具</p>
+<li><p>虚拟机部分：解释执行保护的代码</p>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/asLody/VirtualApp">VirtualApp</a> 一款运行于Android系统的沙盒产品</p>
+<li><ul>
+<li>dump dex</li>
+<li>onCreate分析</li>
+</ul>
 </li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/CodingGay/BlackDex">BlackDex</a> 一个运行在Android手机上的脱壳工具</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/android-hacker/VirtualXposed">VirtualXposed</a> <strong>非ROOT</strong>环境下运行Xposed模块的实现</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/heartbee/Va_Fdex2">Fdex2</a> 一款基于VA的脱壳工具</p>
-</li>
-<li><p><a target="_blank" rel="noopener" href="https://github.com/liumengdeqq/CustomAppVMP">CustomAppVMP</a> 参考ADVMP做的</p>
+<li><ul>
+<li>虚拟机入口</li>
+</ul>
 </li>
 </ul>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-225798.htm">https://bbs.pediy.com/thread-225798.htm</a></p>
+<p>Dalvik源码分析到vmp</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-226214.htm">https://bbs.pediy.com/thread-226214.htm</a></p>
+<p>15、乐固libshella 2.10.1分析笔记</p>
+<p>【简介】</p>
+<p>修复So文件</p>
+<p>第一次解密</p>
+<p>第二次解密</p>
+<p>解密Dex</p>
+<p>Dalvik下加载Dex原理分析</p>
+<p>Art下加载Dex原理分析</p>
+<p>Dalvik下脱壳机编写</p>
+<p>Art下脱壳机编写</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-218782.htm">https://bbs.pediy.com/thread-218782.htm</a></p>
+<p>16、360加固之onCreate函数还原并重打包</p>
+<p>【简介】native onCreate</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-223223.htm">https://bbs.pediy.com/thread-223223.htm</a></p>
+<p>17、利用活跃变量分析来去掉vmp大部分垃圾指令</p>
+<p>【简介】思路很清晰，想法也非常不错，不过看好像是在pc端实现的，并未应用在android端</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-265950.htm">https://bbs.pediy.com/thread-265950.htm</a></p>
+<p>18、某Android 的 Dex vmp加固逆向分析</p>
+<p>【简介】顶象的壳加固</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-221270.htm">https://bbs.pediy.com/thread-221270.htm</a></p>
+<p>19、去混淆、dex2c、OLLVM混淆</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/user-240967.htm">https://bbs.pediy.com/user-240967.htm</a></p>
+<p>这个看雪的博客内容太符合这个专题了，mark一下</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/F8LEFT/SoFixer">
+</a></p>
 
             </div>
             <hr>
@@ -325,6 +422,10 @@
                     
                       <a class="hover-with-bg" href="/tags/Android%E8%84%B1%E5%A3%B3/">Android脱壳</a>
                     
+                      <a class="hover-with-bg" href="/tags/VMP/">VMP</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Dex2C/">Dex2C</a>
+                    
                       <a class="hover-with-bg" href="/tags/Android%E5%8A%A0%E5%9B%BA/">Android加固</a>
                     
                   </div>
@@ -342,18 +443,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/12/24/checklist%E2%80%94%E2%80%94%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">checklist——漏洞挖掘</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/12/24/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92/">
-                        <span class="hidden-mobile">论文阅读计划</span>
+                      <a href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%8820.10.09-21.01.23%EF%BC%89/">
+                        <span class="hidden-mobile">每日checklist（20.10.09-21.01.23）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

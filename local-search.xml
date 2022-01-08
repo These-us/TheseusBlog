@@ -4,6 +4,39 @@
   
   
   <entry>
+    <title>VMP&amp;Dex2C（待更新）</title>
+    <link href="/2022/01/08/VMP&amp;Dex2C%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89/"/>
+    <url>/2022/01/08/VMP&amp;Dex2C%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89/</url>
+    
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>研究反混淆有没有意义？ </p><p>一般而言应该是没有意义的…… </p><ol><li><p>这么多年过去了，连有实用意义的标准ollvm的反混淆都没有搞出来 </p></li><li><p>就算ollvm的有了，改pass的那么多厂商的非标准混淆，又得从头去研究，没有通用方案 </p></li><li><p>还有很多从原理上就无法反混淆的技术，比如(dex)vmp、Dex2C等 </p></li><li><p>手动/人工还原始终是无法被取代的，技术人员还是得掌握完整的混淆分析技巧 </p></li><li><p>frida/unidbg/aosp源码调用等技术出现之后，找到各种合适的点，去hook分析和主动调用，意义更大一些。</p></li></ol><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="文章收集"><a href="#文章收集" class="headerlink" title="文章收集"></a>文章收集</h3><p>1、一种通过后端编译优化脱混淆壳的方法</p><p>【简介】一种基于编译原理来实现和打造脱混淆壳的方案，内容与编译原理很接近，可以作为解决VMP这类型壳的思路，不过这个思路也是需要去进行优化的。</p><p><a href="https://bbs.pediy.com/thread-260626.htm">https://bbs.pediy.com/thread-260626.htm</a></p><p>2、一种通过后端编译优化脱虚拟机壳的方法</p><p>【简介】不同于上一篇的文章，内容是有实战环节，这个对抗虚拟机（VMP）的一种解决思路</p><p><a href="https://bbs.pediy.com/thread-266014.htm">https://bbs.pediy.com/thread-266014.htm</a></p><p>3、360加固保免费版分析</p><p>【简介】该加固中使用到大致如下的内容：</p><p>（1）、SO加载动态解密</p><p>（2）、自定义linker加载</p><p>（3）、dex加密隐藏技术</p><p>（4）、VMP化方法</p><p>（5）、抹去了dex、so文件头</p><p><a href="https://bbs.pediy.com/thread-258511.htm">https://bbs.pediy.com/thread-258511.htm</a></p><p>4、百度加固免费版分析及VMP修复</p><p>【简介】这个加固中同样涉及到OLLVM混淆和VMP技术</p><p>文中提到了修复vmp的过程，在回答中也提出了一个技巧就是在不还原ollvm的情况下去分析调试，还有就是过Debug.isDebuggerConnected检测</p><p><a href="https://bbs.pediy.com/thread-257926.htm">https://bbs.pediy.com/thread-257926.htm</a></p><p>5、利用编译器优化干掉控制流平坦化flatten</p><p>【简介】这个文章是借鉴上面的两篇文章进行的研究，对抗控制流平坦化，内容不过多解读，可以证明这个思路是一个不错的思路。</p><p><a href="https://bbs.pediy.com/thread-266323.htm">https://bbs.pediy.com/thread-266323.htm</a></p><p>6、通过一款早期代码抽取壳入门学习 so 层分析</p><p>【简介】这篇文章详细的记录了抽取式的加固的分析方案，其中涉及到很多基础的分析知识，是我们学习和分析的一个不错的好案例</p><p><a href="https://bbs.pediy.com/thread-260251.htm">https://bbs.pediy.com/thread-260251.htm</a></p><p>7、分析邦邦加固</p><p>【简介】upx加固so，脱壳并修复，过fart检测，最后手动调试</p><p><a href="https://bbs.pediy.com/thread-266247.htm">https://bbs.pediy.com/thread-266247.htm</a></p><p>8、分析乐固加固</p><p>【简介】其中涉及到olllvm混淆</p><p><a href="https://bbs.pediy.com/thread-266972.htm">https://bbs.pediy.com/thread-266972.htm</a></p><p>9、分析360加固</p><p>【简介】加固手段所有的壳大同小异，不过未来覆盖全面还是觉得这个文章是有必要探究一下的。</p><p><a href="https://bbs.pediy.com/thread-260049.htm">https://bbs.pediy.com/thread-260049.htm</a></p><p>10、某企业级加固[四代壳]VMP解释执行+指令还原</p><p>【简介】分析的样本应该是梆梆加固的企业版，但是作者并未把完整的样本放出来</p><p>简单的介绍了如何上手分析VMP</p><p>反调试手段（还是逃不过那17种）</p><p>OLLVM混淆</p><p>然后就是指令还原</p><p><a href="https://bbs.pediy.com/thread-257061.htm">https://bbs.pediy.com/thread-257061.htm</a></p><p>11、爱加密-反调试-DumpDex-修复指令-重打包</p><p>【简介】比较奇特的一点就是对信号反调试有讲解</p><p>本篇文章更多的是反调试，修复指令，定制rom的方式修复，这个应该和FART生成bin文件是类似的。</p><p><a href="https://bbs.pediy.com/thread-249684-1.htm">https://bbs.pediy.com/thread-249684-1.htm</a></p><p>12、某加固详细分析总结，另附该加固脱壳机</p><p>【简介】算是加壳的原理解析吧，同时还有脱壳机存在，还是可以研究的，虽然没有vmp的知识，但是都是加固方面的</p><p><a href="https://bbs.pediy.com/thread-252828.htm">https://bbs.pediy.com/thread-252828.htm</a></p><p>13、阿里壳分析和修复</p><p>抽取式加固方案的分析</p><p><a href="https://bbs.pediy.com/thread-226480.htm">https://bbs.pediy.com/thread-226480.htm</a></p><p>14、某VMP壳原理分析笔记</p><p>【简介】</p><ul><li><p>反调试</p></li><li><ul><li>时间反调试</li><li>rtld_db_dlactivity反调试</li></ul></li><li><ul><li>traceid反调试</li><li>端口反调试</li></ul></li><li><p>linker部分：用来加载第二个so</p></li><li><ul><li>装载</li><li>创建soinfo</li></ul></li><li><ul><li>链接</li><li>dump second so</li></ul></li><li><p>虚拟机部分：解释执行保护的代码</p></li><li><ul><li>dump dex</li><li>onCreate分析</li></ul></li><li><ul><li>虚拟机入口</li></ul></li></ul><p><a href="https://bbs.pediy.com/thread-225798.htm">https://bbs.pediy.com/thread-225798.htm</a></p><p>Dalvik源码分析到vmp</p><p><a href="https://bbs.pediy.com/thread-226214.htm">https://bbs.pediy.com/thread-226214.htm</a></p><p>15、乐固libshella 2.10.1分析笔记</p><p>【简介】</p><p>修复So文件</p><p>第一次解密</p><p>第二次解密</p><p>解密Dex</p><p>Dalvik下加载Dex原理分析</p><p>Art下加载Dex原理分析</p><p>Dalvik下脱壳机编写</p><p>Art下脱壳机编写</p><p><a href="https://bbs.pediy.com/thread-218782.htm">https://bbs.pediy.com/thread-218782.htm</a></p><p>16、360加固之onCreate函数还原并重打包</p><p>【简介】native onCreate</p><p><a href="https://bbs.pediy.com/thread-223223.htm">https://bbs.pediy.com/thread-223223.htm</a></p><p>17、利用活跃变量分析来去掉vmp大部分垃圾指令</p><p>【简介】思路很清晰，想法也非常不错，不过看好像是在pc端实现的，并未应用在android端</p><p><a href="https://bbs.pediy.com/thread-265950.htm">https://bbs.pediy.com/thread-265950.htm</a></p><p>18、某Android 的 Dex vmp加固逆向分析</p><p>【简介】顶象的壳加固</p><p><a href="https://bbs.pediy.com/thread-221270.htm">https://bbs.pediy.com/thread-221270.htm</a></p><p>19、去混淆、dex2c、OLLVM混淆</p><p><a href="https://bbs.pediy.com/user-240967.htm">https://bbs.pediy.com/user-240967.htm</a></p><p>这个看雪的博客内容太符合这个专题了，mark一下</p><p><a href="https://github.com/F8LEFT/SoFixer"></a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Android安全</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Android安全</tag>
+      
+      <tag>Android脱壳</tag>
+      
+      <tag>VMP</tag>
+      
+      <tag>Dex2C</tag>
+      
+      <tag>Android加固</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>每日checklist（20.10.09-21.01.23）</title>
     <link href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%8820.10.09-21.01.23%EF%BC%89/"/>
     <url>/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%8820.10.09-21.01.23%EF%BC%89/</url>
@@ -20,11 +53,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -53,11 +86,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -86,11 +119,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -119,11 +152,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -152,11 +185,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -185,11 +218,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -218,11 +251,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -251,11 +284,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -284,9 +317,9 @@
       
       <tag>Android安全</tag>
       
-      <tag>Android加固</tag>
-      
       <tag>Android脱壳</tag>
+      
+      <tag>Android加固</tag>
       
     </tags>
     
@@ -311,11 +344,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       
@@ -344,11 +377,11 @@
     
     <tags>
       
+      <tag>Android安全</tag>
+      
       <tag>漏洞挖掘</tag>
       
       <tag>IOT安全</tag>
-      
-      <tag>Android安全</tag>
       
       <tag>Fuzzing</tag>
       

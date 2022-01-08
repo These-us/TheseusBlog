@@ -26,7 +26,7 @@
 <meta property="og:description" content="前言既然本文档的标题是漏洞挖掘指南，那为了后续更加方便学习，因此在这里就来好好的做一版漏洞挖掘指南。 基础篇涉及的主要是大学中的计算机基本课程，夯实计算机基础。 C++与STL内容编程是学习漏洞挖掘和代码审计最基础的技能,参考笔记：https:&#x2F;&#x2F;github.com&#x2F;Kiprey&#x2F;Skr_Learning&#x2F;tree&#x2F;master&#x2F;week1-2 学习STL无疑是学习侯捷的课程，不会的查看侯捷的书">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-24T11:35:21.843Z">
-<meta property="article:modified_time" content="2021-12-24T11:58:34.486Z">
+<meta property="article:modified_time" content="2022-01-08T07:34:41.777Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="漏洞挖掘">
 <meta property="article:tag" content="IOT安全">
@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      7.2k 字
+      8.5k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      61 分钟
+      71 分钟
     </span>
   
 
@@ -265,7 +265,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：14 天前
+                  本文最后更新于：3 分钟前
                 
               </p>
             
@@ -274,6 +274,7 @@
 <h3 id="基础篇"><a href="#基础篇" class="headerlink" title="基础篇"></a>基础篇</h3><p>涉及的主要是大学中的计算机基本课程，夯实计算机基础。</p>
 <h4 id="C-与STL内容"><a href="#C-与STL内容" class="headerlink" title="C++与STL内容"></a>C++与STL内容</h4><p>编程是学习漏洞挖掘和代码审计最基础的技能,参考笔记：<a target="_blank" rel="noopener" href="https://github.com/Kiprey/Skr_Learning/tree/master/week1-2">https://github.com/Kiprey/Skr_Learning/tree/master/week1-2</a></p>
 <p>学习STL无疑是学习侯捷的课程，不会的查看侯捷的书籍</p>
+<p>同时在github上看到了不错的<a target="_blank" rel="noopener" href="https://github.com/0voice/cpp_new_features">C++的教程</a>，内容总结得非常不错</p>
 <p><strong>课程资源</strong></p>
 <p>链接: <a target="_blank" rel="noopener" href="https://pan.baidu.com/s/1Nq9ic1K5ipUJKFke6Hi-RA">https://pan.baidu.com/s/1Nq9ic1K5ipUJKFke6Hi-RA</a> 提取码: 8bpw </p>
 <p>–来自百度网盘超级会员v5的分享</p>
@@ -292,6 +293,8 @@
 <h4 id="编译原理-CS144"><a href="#编译原理-CS144" class="headerlink" title="编译原理 CS144"></a>编译原理 CS144</h4><p>学习编译原理是至关重要的，很多大学都不开设这门课程，但是在实战中或安全研究中会用到大量编译原理的知识。</p>
 <p>学习编译原理首推的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1NE411376V?spm_id_from=333.999.0.0">斯坦福的CS143</a></p>
 <p>除此之外，<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1zW411t7YE?spm_id_from=333.999.0.0">哈工大的编译原理</a>也是很不错的教程</p>
+<p>SFU大学的编译器。基于LLVM</p>
+<p><a target="_blank" rel="noopener" href="http://anoopsarkar.github.io/compilers-class/syllabus.html">http://anoopsarkar.github.io/compilers-class/syllabus.html</a></p>
 <p>学习任务就是自己实现一个小语言的解释器或者编译器</p>
 <p>优秀笔记</p>
 <p>1、<a target="_blank" rel="noopener" href="https://github.com/Kiprey/Skr_Learning/tree/master/week3-6">https://github.com/Kiprey/Skr_Learning/tree/master/week3-6</a></p>
@@ -320,13 +323,61 @@
 <p>1、<a target="_blank" rel="noopener" href="https://github.com/huangrt01/TCP-Lab">lab-writeup</a></p>
 <p>2、<a target="_blank" rel="noopener" href="https://blog.csdn.net/kangyupl/article/details/108589594">Stanford CS144 学习笔记</a></p>
 <h4 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h4><p>首先推荐的是哈工大的<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1t4411e7LH?from=search&seid=1912602767882056182&spm_id_from=333.337.0.0">计算机组成原理</a></p>
+<p>其次便是stanford的CS111这门课程，主要讲解的便是线程、并发、加锁这类的操作。</p>
+<p>视频课程：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=_LFGjZ0Sc6I&list=PLai-xIlqf4JmTNR9aPCwIAOySs1GOm8sQ">CS111</a></p>
+<p>课表：<a target="_blank" rel="noopener" href="https://web.stanford.edu/~ouster/cs111-spring21/all_lectures/">CS111 2021</a></p>
+<p>当然伯克利大学的课程也是不错，并且也有视频课程</p>
+<p>视频课程：<a target="_blank" rel="noopener" href="https://www.youtube.com/channel/UCnhpOONF1c1FtipDF8LPdqQ/videos">CS162</a></p>
+<p>课表：<a target="_blank" rel="noopener" href="https://inst.eecs.berkeley.edu/~cs162/sp20/">CS162 2020</a></p>
 <h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><p>如果是想要学习kernel相关的知识，那么操作系统是一门很好的课程来带入我们学习内核</p>
 <p>国外的课程推荐：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV19k4y1C7kA">麻省理工的操作系统</a></p>
 <p>相关的笔记：<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013577996/article/details/108679997">Mit6.S081学习笔记</a></p>
+<p>相关的课表：<a target="_blank" rel="noopener" href="https://pdos.csail.mit.edu/6.828/2020/schedule.html">MIT6.S081的课表和教材</a></p>
+<p>上面这个是本科生的独立的课程，后面又分出一门课专门为研究生准备的课程</p>
+<p><a target="_blank" rel="noopener" href="https://abelay.github.io/6828seminar/schedule.html">MIT6.828</a></p>
+<p>不过目前只能看PPT，并没有视频<a target="_blank" rel="noopener" href="https://blog.csdn.net/u013577996/article/details/108679997">https://blog.csdn.net/u013577996/article/details/108679997</a>)</p>
 <p>国内课程推荐：学堂在线中的清华大学的<a target="_blank" rel="noopener" href="https://www.xuetangx.com/course/THU08091000267/7753473?channel=i.area.manual_search">操作系统</a>课程</p>
 <p>相关的课后作业：<a target="_blank" rel="noopener" href="https://chyyuu.gitbooks.io/ucore_os_docs/content/">8个lab实验</a> 、不过有<a target="_blank" rel="noopener" href="https://www.lanqiao.cn/courses/221/learning/?id=709">在线的平台进行实验</a>，感觉用处不大，还是考虑自己本地搭建平台吧</p>
 <p>相关的笔记：<a target="_blank" rel="noopener" href="https://github.com/Kiprey/Skr_Learning/tree/master/week9-19/uCore">操作系统实验笔记</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/chyyuu/os_course_info">https://github.com/chyyuu/os_course_info</a></p>
+<h4 id="软件分析"><a href="#软件分析" class="headerlink" title="软件分析"></a>软件分析</h4><p>程序分析是一门重要的课程，主要是讲解如何分析流程，比如soot、污点分析，数据流分析等等技术，可谓是目前安全静态代码审计的必经之路，目前很多半自动化或者自动化漏洞检测工具都是会基于软件分析。</p>
+<p>学习这门课程的前提是学过编译原理</p>
+<ul>
+<li>首先推荐的是南京大学新开设的课程《软件分析》</li>
+</ul>
+<p>课程是开放在B站上的，本课程是以java为基础，以soot为静态分析工具</p>
+<p>视频课程：<a target="_blank" rel="noopener" href="https://www.bilibili.com/medialist/play/2919428?from=space&business=space_series&business_id=1006553&desc=0&spm_id_from=333.999.0.0">软件分析</a></p>
+<p>课件地址：<a target="_blank" rel="noopener" href="https://pascal-group.bitbucket.io/teaching.html">PPT</a></p>
+<ul>
+<li>北京大学公开课程熊英飞老师《软件分析技术》</li>
+</ul>
+<p>这个课程和南京大学差不多，都是基于soot的分析，可以作为补充材料进行</p>
+<p>视频：<a target="_blank" rel="noopener" href="https://liveclass.org.cn/cloudCourse/#/courseDetail/8mI06L2eRqk8GcsW">软件分析技术</a></p>
+<p>课件地址：<a target="_blank" rel="noopener" href="https://xiongyingfei.github.io/SA/2019/main.htm#desc">PPT</a></p>
+<p>课后作业：相关的笔记已经非常的多，课后作业在PPT中都有所提到，建议是看课程，跟着课程完成对应的课堂作业。</p>
+<p>前面推荐的是国内优秀的两个课程，接下来是推荐国外的优秀软件分析课程</p>
+<ul>
+<li>UFMG大学的DCC888</li>
+</ul>
+<p>该课程的优势在于是基于C/C++来进行讲解的，LLVM作为分析器，相比较上面的两个课程而言更加的深入，并且课程的质量也是非常的不错，讲师开放了相关的PPT和课程</p>
+<p>视频和PPT：<a target="_blank" rel="noopener" href="https://homepages.dcc.ufmg.br/~fernando/classes/dcc888/ementa/">link</a></p>
+<p>当然国内也有公司基于这个讲义<a target="_blank" rel="noopener" href="https://space.bilibili.com/482245901/video">进行讲解</a></p>
+<ul>
+<li>SOLA program analysis</li>
+</ul>
+<p>总共涵盖了三个主题：静态分析、分析程序的源代码、动态分析，基于通用数据流分析框架为javascript实现污点分析。</p>
+<p>可以配合南京大学的课程进行搭配学习。</p>
+<p>课程地址：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1aL4y167vY?spm_id_from=333.1007.top_right_bar_window_history.content.click">程序分析</a></p>
+<p>讲义以及课件：<a target="_blank" rel="noopener" href="https://software-lab.org/teaching/winter2020/pa/">PPT</a></p>
+<h4 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h4><p>这是麻省理工的网络安全的课程，可谓是非常的经典，并且课程内容都是非常的新，每年都有更新。</p>
+<p><a target="_blank" rel="noopener" href="https://security.cs.berkeley.edu/">Berkeley安全</a>课表</p>
+<p><a target="_blank" rel="noopener" href="https://sp21.cs161.org/">Berkeley CS161 计算机安全</a></p>
+<p>这个课程的春季课程是可以看到视频，并且内容和Mit6.857有重复性的，但是麻省理工的课程（<a target="_blank" rel="noopener" href="http://courses.csail.mit.edu/6.857/2020/handouts">mit6.857</a>）并没有公开完全的PPT，所以可以优先看这个课程，来学习吧，不过密码学教程是有更加详细的教程。</p>
+<p>除此之外，其秋季课程（<a target="_blank" rel="noopener" href="https://cs161.org/">CS161 2021</a>）公开了PPT。</p>
+<p><a target="_blank" rel="noopener" href="https://css.csail.mit.edu/6.858/2022/">MIT6.858：计算机系统安全</a></p>
+<p>这套课程可是非常棒，内容课网络安全非常的接近，涉及到Android、Linux、cpu等等方面的知识。并且还youtube上在存有课程，可以结合课程进行学习。</p>
+<p><a target="_blank" rel="noopener" href="https://cs155.stanford.edu/syllabus.html">stanford CS155 计算机和网络安全</a></p>
+<p>内容和mit6.858相似，不过内容也会有所差异，可惜的是并未有开放视频教程，不过有ppt</p>
 <p>以上内容就是基础课程，学习完成这些基础内容，计算机能力可谓相当扎实。</p>
 <h3 id="能力篇"><a href="#能力篇" class="headerlink" title="能力篇"></a>能力篇</h3><h4 id="基础漏洞学习"><a href="#基础漏洞学习" class="headerlink" title="基础漏洞学习"></a>基础漏洞学习</h4><p>想要学习挖洞，那必然是需要熟悉基础漏洞原理，学习途径大致如下</p>
 <p>1、<a target="_blank" rel="noopener" href="https://ctf-wiki.org/pwn/linux/user-mode/environment/">CTF-wiki</a> 或者看<a target="_blank" rel="noopener" href="https://guyinatuxedo.github.io/index.html#nightmare">Nightmare</a></p>

@@ -1,0 +1,511 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="您不得重新包装！ 揭秘 Android 上的反重新包装（you Shall not Repackage! Demystifying Anti-packaging on Android）在这方面，本文旨在提出当前反再包装方法的主要问题。本文的贡献有三个方面: 1) 分析了当前最先进的反重新包装方案的弱点 (即通过Dex加密，AppIS，SSN，SDC，BombDroid和NRP进行自我保护)，2)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2022论文阅读计划——1月">
+<meta property="og:url" content="http://example.com/2022/01/10/2022%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92%E2%80%94%E2%80%941%E6%9C%88/index.html">
+<meta property="og:site_name" content="Theseus&#39;Blog">
+<meta property="og:description" content="您不得重新包装！ 揭秘 Android 上的反重新包装（you Shall not Repackage! Demystifying Anti-packaging on Android）在这方面，本文旨在提出当前反再包装方法的主要问题。本文的贡献有三个方面: 1) 分析了当前最先进的反重新包装方案的弱点 (即通过Dex加密，AppIS，SSN，SDC，BombDroid和NRP进行自我保护)，2)">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-10T14:07:07.327Z">
+<meta property="article:modified_time" content="2022-01-10T14:07:07.327Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="学习指南">
+<meta property="article:tag" content="漏洞挖掘">
+<meta property="article:tag" content="IOT安全">
+<meta property="article:tag" content="Android安全">
+<meta property="article:tag" content="Fuzzing">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>2022论文阅读计划——1月 - Theseus&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Theseus&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="2022论文阅读计划——1月">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-10 22:07" pubdate>
+        2022年1月10日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      11k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      90 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">2022论文阅读计划——1月</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：1 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h4 id="您不得重新包装！-揭秘-Android-上的反重新包装（you-Shall-not-Repackage-Demystifying-Anti-packaging-on-Android）"><a href="#您不得重新包装！-揭秘-Android-上的反重新包装（you-Shall-not-Repackage-Demystifying-Anti-packaging-on-Android）" class="headerlink" title="您不得重新包装！ 揭秘 Android 上的反重新包装（you Shall not Repackage! Demystifying Anti-packaging on Android）"></a>您不得重新包装！ 揭秘 Android 上的反重新包装（you Shall not Repackage! Demystifying Anti-packaging on Android）</h4><p>在这方面，本文旨在提出当前反再包装方法的主要问题。本文的贡献有三个方面: 1) 分析了当前最先进的反重新包装方案的弱点 (即通过Dex加密，AppIS，SSN，SDC，BombDroid和NRP进行自我保护)，2) 总结构成这些方案的反重新包装技术的主要攻击媒介，以及3) 展示这种攻击媒介如何规避当前的提议。本文还将展示对NRP的全 ﬂ 边缘攻击，NRP是迄今为止唯一公开可用的反重新包装工具。</p>
+<h4 id="当程序分析遇到字节码搜索：BackDroid-中现代-Android-应用程序的有针对性和高效的跨过程分析（When-Program-Analysis-Meets-Bytecode-Search-Targeted-and-Efﬁcient-Inter-procedural-Analysis-of-Modern-Android-Apps-in-BackDroid）"><a href="#当程序分析遇到字节码搜索：BackDroid-中现代-Android-应用程序的有针对性和高效的跨过程分析（When-Program-Analysis-Meets-Bytecode-Search-Targeted-and-Efﬁcient-Inter-procedural-Analysis-of-Modern-Android-Apps-in-BackDroid）" class="headerlink" title="当程序分析遇到字节码搜索：BackDroid 中现代 Android 应用程序的有针对性和高效的跨过程分析（When Program Analysis Meets Bytecode Search:Targeted and Efﬁcient Inter-procedural Analysis of Modern Android Apps in BackDroid）"></a>当程序分析遇到字节码搜索：BackDroid 中现代 Android 应用程序的有针对性和高效的跨过程分析（When Program Analysis Meets Bytecode Search:Targeted and Efﬁcient Inter-procedural Analysis of Modern Android Apps in BackDroid）</h4><p>我们提出了一种称为 on-the-fly 字节码搜索的技术，它可以在需要定位调用者时及时搜索反汇编的应用程序字节码文本。 通过这种方式，它逐步引导有针对性（和向后）的过程间分析，直到到达入口点，而不依赖于整个应用程序图。 然而，由于 Java 多态性、回调、异步流、静态初始化器和 Android 应用程序中的组件间通信，这种基于搜索的跨过程分析具有挑战性。 我们通过提出一组利用灵活搜索和转发对象污点分析的字节码搜索机制来克服我们上下文中的这些独特障碍。 在这种新的过程间分析之上，我们进一步调整了传统的反向切片和正向常量传播，以提供对接收器 API 调用的完整数据流跟踪。 我们已经实现了一个名为 BackDroid 的原型，并将其与 Amandroid 进行了比较，以分析 3,178 个现代流行应用程序的加密和 SSL 错误配置。 评估表明，对于此类基于 sink 的问题，BackDroid 的速度提高了 37 倍（2.13 对 78.15 分钟）并且没有超时故障（在 Amandroid 中为 35%），同时保持接近甚至更好的检测效率。</p>
+<h4 id="VMHunt：一种可验证的部分虚拟化二进制代码简化方法（VMHunt-A-Verifiable-Approach-to-Partially-Virtualized-Binary-Code-Simplification）"><a href="#VMHunt：一种可验证的部分虚拟化二进制代码简化方法（VMHunt-A-Verifiable-Approach-to-Partially-Virtualized-Binary-Code-Simplification）" class="headerlink" title="VMHunt：一种可验证的部分虚拟化二进制代码简化方法（VMHunt: A Verifiable Approach to Partially-Virtualized Binary Code Simplification）"></a>VMHunt：一种可验证的部分虚拟化二进制代码简化方法（VMHunt: A Verifiable Approach to Partially-Virtualized Binary Code Simplification）</h4><p>在本文中，对代码虚拟化的类型和范围的假设较少，我们提出了一种可验证的方法来解决部分虚拟化二进制代码简化的挑战。 我们的关键见解是代码虚拟化是一种进程级虚拟机（VM），进入和退出 VM 时的上下文切换模式可用于检测 VM 边界。 基于VM边界的范围，我们简化了虚拟化代码。 我们首先忽略给定虚拟化片段中不影响该片段最终结果的所有指令。 为了更好地还原通过按位运算对变量进行编码的数据混淆效果，我们随后运行了一种称为多粒度符号执行的新符号执行，以进一步简化跟踪片段。 生成的简洁符号公式有助于我们简化结果的正确性测试。 我们已经将我们的想法实现为开源工具 VMHunt，并使用真实世界的应用程序和恶意软件对其进行了评估。 令人鼓舞的实验结果表明，VMHunt 是对现有技术的显着改进。</p>
+<h4 id="VMAttack：对基于虚拟化的打包二进制文件进行反混淆（VMAttack-Deobfuscating-Virtualization-Based-Packed-Binaries）"><a href="#VMAttack：对基于虚拟化的打包二进制文件进行反混淆（VMAttack-Deobfuscating-Virtualization-Based-Packed-Binaries）" class="headerlink" title="VMAttack：对基于虚拟化的打包二进制文件进行反混淆（VMAttack: Deobfuscating Virtualization-Based Packed Binaries）"></a>VMAttack：对基于虚拟化的打包二进制文件进行反混淆（VMAttack: Deobfuscating Virtualization-Based Packed Binaries）</h4><p>我们提出了 VMAttack，这是一种基于自动静态和动态分析的虚拟化打包二进制文件的反混淆工具，它提供了反汇编的简化视图。 VMAttack 是作为 IDA Pro 的插件实现的，因此可以与手动逆向工程无缝集成。 通过分析受保护二进制文件 VM 层的内部工作原理，显着降低了反汇编视图的复杂性。 使用静态分析，基于专门为基于堆栈的虚拟机设计的中间表示，VM 的复杂字节码序列被映射到易于阅读的伪代码指令。 使用动态分析，我们识别结构组件，如解释器循环，并通过过滤掉执行跟踪的语义冗余指令来压缩指令序列。 综合结果对静态和动态分析的结果进行评分，为逆向工程师提供了一种去混淆的反汇编，可以容忍单一分析技术的弱点。 VMAttack 目前仅限于基于堆栈的虚拟机，如 VMProtect。 我们使用用 VMProtect 混淆的二进制文件评估了 VMAttack，并在动态分析和静态和动态组合分析中实现了平均执行跟踪减少 89.86% 和 96.67%</p>
+<h4 id="VirtSC：将虚拟化混淆与自校验和相结合（VirtSC-Combining-Virtualization-Obfuscation-with-Self-Checksumming）"><a href="#VirtSC：将虚拟化混淆与自校验和相结合（VirtSC-Combining-Virtualization-Obfuscation-with-Self-Checksumming）" class="headerlink" title="VirtSC：将虚拟化混淆与自校验和相结合（VirtSC: Combining Virtualization Obfuscation with Self-Checksumming）"></a>VirtSC：将虚拟化混淆与自校验和相结合（VirtSC: Combining Virtualization Obfuscation with Self-Checksumming）</h4><p>自校验和 (SC) 是一种防篡改技术，可确保内存中的某些程序段（代码）在运行时散列为已知值。 SC对应用程序的限制很少，因此可以保护绝大多数程序。 SC 中的代码验证需要在编译后计算预期的哈希值，因为机器代码以前是未知的。 这意味着需要在二进制可执行文件中调整预期的哈希值，因此由于此调整步骤，将 SC 与其他保护结合起来受到限制。 然而，混淆保护通常是必要的，因为 SC 保护可以通过模式匹配轻松检测和禁用。 在本文中，我们提出了一种使用虚拟化混淆的分层保护，产生了一种与架构无关的 SC 保护，不需要编译后调整。</p>
+<h4 id="释放编译器优化对二进制代码差异的隐藏力量：一项实证研究（Unleashing-the-Hidden-Power-of-Compiler-Optimization-on-Binary-Code-Difference-An-Empirical-Study）"><a href="#释放编译器优化对二进制代码差异的隐藏力量：一项实证研究（Unleashing-the-Hidden-Power-of-Compiler-Optimization-on-Binary-Code-Difference-An-Empirical-Study）" class="headerlink" title="释放编译器优化对二进制代码差异的隐藏力量：一项实证研究（Unleashing the Hidden Power of Compiler Optimization on Binary Code Difference:An Empirical Study）"></a>释放编译器优化对二进制代码差异的隐藏力量：一项实证研究（Unleashing the Hidden Power of Compiler Optimization on Binary Code Difference:An Empirical Study）</h4><p>本文首先系统地研究了编译器优化对二进制代码差异的有效性。 我们为二进制代码差异的自动调整定制了基于搜索的迭代编译。 我们开发 BinTuner 来搜索可以最大化二进制代码差异量的近似最优优化序列。 我们在 SPEC 基准（CPU2006 和 CPU2017）、Coreutils 和 OpenSSL 上使用 GCC 10.2 和 LLVM 11.0 运行 BinTuner。 我们的实验表明，以 279 到 1881 次编译迭代为代价，BinTuner 可以找到明显优于一般 -Ox 设置的自定义优化序列。 BinTuner 的输出严重破坏了著名的二进制差异工具的比较。 此外，通过 BinTuner 调优的物联网恶意软件变种的检测率下降了 50% 以上。 我们的发现为安全分析师描绘了一个警示故事，即攻击者有一种新方法可以经济高效地改变恶意软件代码，研究界需要退后一步重新评估优化阻力评估。</p>
+<h4 id="了解-Android-混淆技术：野外大规模调查（Understanding-Android-Obfuscation-Techniques-A-Large-Scale-Investigation-in-the-Wild）"><a href="#了解-Android-混淆技术：野外大规模调查（Understanding-Android-Obfuscation-Techniques-A-Large-Scale-Investigation-in-the-Wild）" class="headerlink" title="了解 Android 混淆技术：野外大规模调查（Understanding Android Obfuscation Techniques:A Large-Scale Investigation in the Wild）"></a>了解 Android 混淆技术：野外大规模调查（Understanding Android Obfuscation Techniques:A Large-Scale Investigation in the Wild）</h4><p>在本文中，我们寻求更好地理解 Android 混淆，并通过在野外进行的大规模调查来描述混淆使用的整体视图。 我们特别关注四种流行的混淆方法：标识符重命名、字符串加密、Java 反射和打包。 为了获得有意义的统计结果，我们为每种混淆技术设计了高效且轻量级的检测模型，并将它们应用于我们的海量 APK 数据集（从 Google Play、多个第三方市场和恶意软件数据库收集）。 我们从结果中学到了几个有趣的事实。 例如，恶意软件作者更频繁地使用字符串加密，第三方市场上的应用程序比 Google Play 更多。 我们也对每个发现的解释感兴趣。 因此我们在采样后对部分安卓应用进行了深入的代码分析。 我们相信我们的研究将帮助开发人员选择最合适的混淆方法，同时帮助研究人员朝着正确的方向改进代码分析系统。</p>
+<h4 id="使用-TIRO-处理-Android-中基于运行时的混淆-Tackling-runtime-based-obfuscation-in-Android-with-TIRO"><a href="#使用-TIRO-处理-Android-中基于运行时的混淆-Tackling-runtime-based-obfuscation-in-Android-with-TIRO" class="headerlink" title="使用 TIRO 处理 Android 中基于运行时的混淆(Tackling runtime-based obfuscation in Android with TIRO)"></a>使用 TIRO 处理 Android 中基于运行时的混淆(<a target="_blank" rel="noopener" href="https://www.usenix.org/conference/usenixsecurity18/presentation/wong">Tackling runtime-based obfuscation in Android with TIRO</a>)</h4><p>我们提出了 TIRO，这是一个使用 TargetInstrument-Run-Observe 方法的 Android 反混淆框架。 TIRO 提供了一个统一的框架，可以对使用传统混淆和更新的基于运行时的混淆技术组合的恶意软件进行反混淆。 我们在现代 Android 恶意软件样本数据集上评估和使用 TIRO，发现 TIRO 可以自动检测和反转基于语言和基于运行时的混淆。 我们还在来自 VirusTotal 的 2000 个恶意软件样本的语料库上评估 TIRO，发现 80% 的样本中存在基于运行时的混淆技术，这表明基于运行时的混淆是当今 Android 恶意软件作者使用的重要工具。</p>
+<h4 id="符号去混淆：从虚拟化代码回到原始代码-Symbolic-deobfuscation-from-virtualized-code-back-to-the-original"><a href="#符号去混淆：从虚拟化代码回到原始代码-Symbolic-deobfuscation-from-virtualized-code-back-to-the-original" class="headerlink" title="符号去混淆：从虚拟化代码回到原始代码(Symbolic deobfuscation: from virtualized code back to the original)"></a>符号去混淆：从虚拟化代码回到原始代码(Symbolic deobfuscation: from virtualized code back to the original)</h4><p>我们提出了一种新的自动化动态分析，旨在完全恢复虚拟化代码的原始程序行为——从 VM 机器中清除，并编译回原始二进制文件的新（去虚拟化）版本。 我们通过广泛的实验评估，评估其精度、效率和通用性，展示了该方法在小型哈希函数（典型的受混淆保护的专有资产）上的潜力，并且我们解决了 Tigress Challenge（的非 jitted 部分） 以完全自动化的方式。 虽然我们的方法仍然显示出对可以处理的程序类别的限制，但这项工作清楚地表明，可以轻松地从其虚拟化版本中检索类似哈希的函数，挑战虚拟化是防止逆向的最佳防御这一常识。 在不久的将来，我们将专注于重建更复杂的程序结构，例如用户相关的循环或内存访问。</p>
+<h4 id="Speech-to-SQL：从自然语言问题转向语音驱动的-SQL-查询生成-Speech-to-SQL-Towards-Speech-driven-SQL-Query-Generation-From-Natural-Language-Question"><a href="#Speech-to-SQL：从自然语言问题转向语音驱动的-SQL-查询生成-Speech-to-SQL-Towards-Speech-driven-SQL-Query-Generation-From-Natural-Language-Question" class="headerlink" title="Speech-to-SQL：从自然语言问题转向语音驱动的 SQL 查询生成(Speech-to-SQL: Towards Speech-driven SQL Query Generation From Natural Language Question)"></a>Speech-to-SQL：从自然语言问题转向语音驱动的 SQL 查询生成(Speech-to-SQL: Towards Speech-driven SQL Query Generation From Natural Language Question)</h4><p>我们进一步提出了一种名为 SpeechSQLNet 的新型端到端神经架构，无需外部 ASR 步骤即可将人类语音直接转换为 SQL 查询。 SpeechSQLNet 的优势在于充分利用了语音中丰富的语言信息。 据我们所知，这是第一次尝试基于任意自然语言问题直接合成 SQL，而不是基于自然语言版本的 SQL 或其具有有限 SQL 语法的变体。 为了验证所提出的问题和模型的有效性，我们通过搭载广泛使用的 text-to-SQL 数据集进一步构建了一个名为 SpeechQL 的数据集。 对该数据集的广泛实验评估表明，SpeechSQLNet 可以直接从人类语音中合成高质量的 SQL 查询，在精确匹配精度方面优于各种竞争对手以及级联方法。 我们预计 Speech-toSQL 将激发更多关于更有效和高效的人机界面的研究，以降低使用关系数据库的障碍。</p>
+<h4 id="二进制的语义感知混淆方案预测（Semantics-aware-Obfuscation-Scheme-Prediction-for-Binary）"><a href="#二进制的语义感知混淆方案预测（Semantics-aware-Obfuscation-Scheme-Prediction-for-Binary）" class="headerlink" title="二进制的语义感知混淆方案预测（Semantics-aware Obfuscation Scheme Prediction for Binary）"></a>二进制的语义感知混淆方案预测（Semantics-aware Obfuscation Scheme Prediction for Binary）</h4><p>在本文中，我们介绍了一种语义感知的混淆检测方法，在 277,131 个组装文档的实验数据集上，单个混淆的检测率为 89.4%，多次混淆的检测率为 82.79%。 此外，我们还在慕尼黑工业大学（德国慕尼黑工业大学）提供的混淆基准上测试了 OBFEYE。 单次混淆测试准确率为91.81%，多次混淆准确率高达97.84%。 此外，我们已经证明，我们的方法需要适度的计算来执行特征提取，并且它可以在适度的时间范围内在单个 CPU 上对我们的语料库实现良好的准确性。 特别是，我们构建了包含 277,131 个带有汇编代码的混淆文件、8 个单一混淆算法和 6 个多重混淆算法的数据集，这对于其他致力于研究代码混淆的研究人员来说是有价值的</p>
+<h4 id="SCORE：源代码优化和重构（SCORE-Source-Code-Optimization-amp-REconstruction）"><a href="#SCORE：源代码优化和重构（SCORE-Source-Code-Optimization-amp-REconstruction）" class="headerlink" title="SCORE：源代码优化和重构（SCORE: Source Code Optimization &amp;REconstruction）"></a>SCORE：源代码优化和重构（SCORE: Source Code Optimization &amp;REconstruction）</h4><p>本文介绍了源级优化工具 SCORE 的设计及其评估结果。 代码优化是一种众所周知的技术，但通常应用于 IR 级别或更低级别。 然而，需要更多的研究来通过重构控制流来提高可读性，因为商业混淆工具在源代码级别提供控制流混淆。 特别是，作为源级，控制流混淆在编译过程中根本没有优化，编译后的二进制文件的分析时间大大延迟。 此外，由于编译器在编译过程中会剥离信息，因此在二进制级别撤消控制流混淆比在源代码级别更困难。  SCORE 在源代码层面进行控制流重构和优化，不仅大大提高了源代码的可读性，而且也大大提高了二进制代码的结构。 由于在控制流重构之后应用了优化技术，可以优化更多的模式，提供比编译器的优化模块更高的优化效果。 特别是，这项研究首次证明了源级优化和控制流重建的必要性。</p>
+<h4 id="基于-LLVM-的-SATURN-软件反混淆框架-SATURN-Software-Deobfuscation-Framework-Based-on-LLVM"><a href="#基于-LLVM-的-SATURN-软件反混淆框架-SATURN-Software-Deobfuscation-Framework-Based-on-LLVM" class="headerlink" title="基于 LLVM 的 SATURN 软件反混淆框架(SATURN:Software Deobfuscation Framework Based on LLVM)"></a>基于 LLVM 的 SATURN 软件反混淆框架(SATURN:Software Deobfuscation Framework Based on LLVM)</h4><p>在本文中，我们讨论了一种基于编译器框架 LLVM 的去混淆和重新编译混淆代码的通用方法。 我们展示了如何将二进制代码提升回编译器中间语言 LLVM-IR，并解释我们如何使用基于编译器优化和可满足性模理论的迭代控制流图构造算法 [3] 恢复模糊二进制函数的控制流图（ SMT）解决。 我们的方法不对混淆代码做任何假设，而是使用 LLVM 和 Souper Optimizer 中可用的强大编译器优化来简化混淆。 我们的实验结果表明，这种方法可以有效地削弱甚至消除应用的混淆技术，如常量展开、某些基于算术的不透明表达式、死代码插入、虚假控制流或公共和商业混淆器中的整数编码。 恢复的 LLVM-IR 可以通过自定义反混淆通道进一步处理，这些通道现在应用在与注入的混淆技术相同的级别，或使用可用的 LLVM 后端之一重新编译。 所展示的工作是在一个名为 SATURN 的反混淆工具中实现的（图 1）。</p>
+<h4 id="使用-ReDex-优化器逆向-Android-应用程序中的控制流结构混淆（Reversing-Obfuscated-Control-Flow-Structures-in-Android-Apps-using-ReDex-Optimizer）"><a href="#使用-ReDex-优化器逆向-Android-应用程序中的控制流结构混淆（Reversing-Obfuscated-Control-Flow-Structures-in-Android-Apps-using-ReDex-Optimizer）" class="headerlink" title="使用 ReDex 优化器逆向 Android 应用程序中的控制流结构混淆（Reversing Obfuscated Control Flow Structures in Android Apps using ReDex Optimizer）"></a>使用 ReDex 优化器逆向 Android 应用程序中的控制流结构混淆（Reversing Obfuscated Control Flow Structures in Android Apps using ReDex Optimizer）</h4><p>在本文中，我们应用 ReDex 优化器来逆转 Obfuscapk 系统对开源 Android 应用程序执行的控制流混淆。 然后，我们分析了 ReDex 在逆向 Android 应用程序控制流混淆的反混淆能力方面的有效性和局限性。 实验结果表明，ReDex 可以恢复使用 Obfuscapk 混淆器的控制流混淆技术混淆的 1108 个应用程序中的 1089 个。 在优化字节码的过程中，ReDex 显着减少了方法和字段的数量，但在去除与无用的 goto 语句和随机 nop 指令相关的死代码方面存在一定的局限性。</p>
+<h4 id="QSynth-一种基于程序综合的二进制代码反混淆方法-QSynth-A-Program-Synthesis-based-Approach-for-Binary-Code-Deobfuscation"><a href="#QSynth-一种基于程序综合的二进制代码反混淆方法-QSynth-A-Program-Synthesis-based-Approach-for-Binary-Code-Deobfuscation" class="headerlink" title="QSynth - 一种基于程序综合的二进制代码反混淆方法(QSynth - A Program Synthesis based Approach for Binary Code Deobfuscation)"></a>QSynth - 一种基于程序综合的二进制代码反混淆方法(QSynth - A Program Synthesis based Approach for Binary Code Deobfuscation)</h4><p> 我们提出了一种利用 DSE 和程序合成的通用方法，以成功合成使用混合布尔算术、数据编码或虚拟化混淆的程序。 所提出的合成算法是一种由自上而下的呼吸优先搜索引导的离线枚举合成原语。 我们展示了它对最先进的混淆器的有效性及其可扩展性，因为它取代了其他基于合成的类似方法。 我们还展示了它在存在复合混淆（各种技术的组合）时的有效性。 这项正在进行的工作启发了综合针对某些类型的混淆的有效性，并为更强大的算法和简化策略开辟了道路。</p>
+<h4 id="使用多个DEX文件保护Android应用程序免受静态反向工程攻击-Protecting-Android-applications-with-multiple-DEX-files-against-Static-Reverse-Engineering-Attacks"><a href="#使用多个DEX文件保护Android应用程序免受静态反向工程攻击-Protecting-Android-applications-with-multiple-DEX-files-against-Static-Reverse-Engineering-Attacks" class="headerlink" title="使用多个DEX文件保护Android应用程序免受静态反向工程攻击(Protecting Android applications with multiple DEX files against Static Reverse Engineering Attacks)"></a>使用多个DEX文件保护Android应用程序免受静态反向工程攻击(Protecting Android applications with multiple DEX files against Static Reverse Engineering Attacks)</h4><p>Android应用程序包 (APK) 使用DEX格式作为可执行文件格式。由于DEX文件采用Java字节码格式，因此可以使用静态反向工程工具轻松获取Java源代码。此功能使窃取Android应用程序变得容易。ijiami、liapp、阿里巴巴等工具可用于保护应用程序免受静态反向工程攻击。这些工具通常将加密的clases.dex保存在APK文件中，然后在应用程序启动时动态解密和加载。但是，这些工具不能保护多索引Android应用程序。多索引Android应用程序是包含多个DEX文件的APK，主要用于大型应用程序。我们提出了一种保护多索引Android应用免受静态反向工程攻击的方法。该方法加密多个DEX文件并将其存储在APK文件中。启动APK时，加密的DEX文件将被动态解密和加载。实验结果表明，该方法能够有效地保护多索引APK。</p>
+<h4 id="并行空间旅行：Android应用级虚拟化的安全性分析（Parallel-Space-Traveling-A-Security-Analysis-of-App-Level-Virtualization-in-Android）"><a href="#并行空间旅行：Android应用级虚拟化的安全性分析（Parallel-Space-Traveling-A-Security-Analysis-of-App-Level-Virtualization-in-Android）" class="headerlink" title="并行空间旅行：Android应用级虚拟化的安全性分析（Parallel Space Traveling: A Security Analysis of App-Level Virtualization in Android）"></a>并行空间旅行：Android应用级虚拟化的安全性分析（Parallel Space Traveling: A Security Analysis of App-Level Virtualization in Android）</h4><p>在本文中，我们对应用级虚拟化的实施以及用户将面临的安全威胁进行了系统研究。 我们调查了一批由第三方开发的支持虚拟化的应用程序。 我们发现这些应用程序在用户中非常受欢迎，并且使用相同的设计逻辑实现。 它们可以加载在彼此不完全隔离的环境中运行的 GuestApp。 因此，对于恶意虚拟化应用程序或集成的第三方库，我们揭示了几种潜在的攻击（权限提升、代码注入、勒索软件等）。 我们还发现虚拟化技术已被恶意软件滥用，这些恶意软件可以发起多种新攻击。 攻击者可以在不携带任何网络钓鱼代码的情况下实施劫持攻击，或在虚拟化框架内重新打包恶意软件以逃避防病毒检测。 我们从多个应用市场找到了 159 个重新打包的样本。 其中 68 个打包恶意软件以广泛分发。 最后，我们讨论了针对用户、开发人员和供应商的各种缓解解决方案。</p>
+<h4 id="基于对比学习的Android恶意软件模糊分析（Obfuscation-resilient-Android-Malware-Analysis-Based-on-Contrastive-Learning）"><a href="#基于对比学习的Android恶意软件模糊分析（Obfuscation-resilient-Android-Malware-Analysis-Based-on-Contrastive-Learning）" class="headerlink" title="基于对比学习的Android恶意软件模糊分析（Obfuscation-resilient Android Malware Analysis Based on Contrastive Learning）"></a>基于对比学习的Android恶意软件模糊分析（Obfuscation-resilient Android Malware Analysis Based on Contrastive Learning）</h4><p>基于所提出的分析，我们设计了一个系统，可以实现对 Android 恶意软件的鲁棒和可解释的分类。 为了实现稳健的分类，我们对恶意软件样本进行对比学习，以学习可以自动从恶意软件样本中提取稳健特征的编码器。 为了实现可解释的分类，我们通过中心性分析将样本的函数调用图转换为图像。 然后通过可视化技术获得相应的热图。 这些热图可以帮助用户理解为什么恶意软件被归类为这个家族。 我们实现了 IFDroid 并对两个广泛使用的数据集进行了广泛的评估。 实验结果表明，IFDroid 优于最先进的 Android 恶意软件家族分类系统。 此外，IFDroid 能够在对 8,112 个混淆恶意软件样本进行分类时保持 98.2% 的真阳性率。</p>
+<h4 id="Obfuscapk：用于-Android-应用程序的开源黑盒混淆工具-Obfuscapk-An-open-source-black-box-obfuscation-tool-for-Android-apps"><a href="#Obfuscapk：用于-Android-应用程序的开源黑盒混淆工具-Obfuscapk-An-open-source-black-box-obfuscation-tool-for-Android-apps" class="headerlink" title="Obfuscapk：用于 Android 应用程序的开源黑盒混淆工具(Obfuscapk: An open-source black-box obfuscation tool for Android apps)"></a>Obfuscapk：用于 Android 应用程序的开源黑盒混淆工具(Obfuscapk: An open-source black-box obfuscation tool for Android apps)</h4><p>Obfuscapk 是一个开源的自动混淆工具，适用于以黑盒方式工作的 Android 应用程序（即，它不需要应用程序源代码）。  Obfuscapk 支持高级混淆功能，并具有模块化架构，可以直接扩展以支持新的混淆技术。 本文介绍了 Obfuscapk 的架构、主要的混淆技术，以及 Obfuscapk CLI 的基础知识。 最后，本文讨论了 Obfuscapk 的实际用例，并对该工具在 Google Play 商店的 1000 个“下载次数最多”的 APK 上的可靠性进行了实证评估。</p>
+<h4 id="MobileFindr：逆向移动二进制文件的函数相似性识别-MobileFindr-Function-Similarity-Identiﬁcation-for-Reversing-Mobile-Binaries"><a href="#MobileFindr：逆向移动二进制文件的函数相似性识别-MobileFindr-Function-Similarity-Identiﬁcation-for-Reversing-Mobile-Binaries" class="headerlink" title="MobileFindr：逆向移动二进制文件的函数相似性识别(MobileFindr: Function Similarity Identiﬁcation for Reversing Mobile Binaries)"></a>MobileFindr：逆向移动二进制文件的函数相似性识别(MobileFindr: Function Similarity Identiﬁcation for Reversing Mobile Binaries)</h4><p>在本文中，我们提出了 MobileFindr，一种基于设备跟踪的移动平台功能相似性识别框架。 MobileFindr 在真实的移动设备上运行，并通过动态检测提取函数执行行为，然后使用收集的行为表征函数并通过距离计算执行函数匹配，从而缓解了许多流行的反逆转技术。 我们使用现实世界中排名靠前的移动框架和应用程序评估了 MobileFindr。 实验结果表明，MobileFindr 在更好的混淆弹性和准确性方面优于现有的最先进工具。</p>
+<h4 id="ART中基于字节码捕获的移动代码对抗逆向方案-Mobile-Code-Anti-Reversing-Scheme-Based-on-Bytecode-Trapping-in-ART"><a href="#ART中基于字节码捕获的移动代码对抗逆向方案-Mobile-Code-Anti-Reversing-Scheme-Based-on-Bytecode-Trapping-in-ART" class="headerlink" title="ART中基于字节码捕获的移动代码对抗逆向方案(Mobile Code Anti-Reversing Scheme Based on Bytecode Trapping in ART)"></a>ART中基于字节码捕获的移动代码对抗逆向方案(Mobile Code Anti-Reversing Scheme Based on Bytecode Trapping in ART)</h4><p>从应用程序安全的角度来看，需要详细了解 ART，例如新的文件格式和代码之间的执行切换方法。 在本文中，我们证明了现有的基于 Dalvik 的应用程序漏洞可以在 ART 中按原样利用。 这是因为现有的 Dalvik 可执行文件共存于 ART 可执行文件中，这些 Dalvik 字节码与编译后的机器码是一一对应的关系。 然后，我们提出了一种基于 ART 的应用程序保护方案，通过动态消除一对一映射来保护这一点。 此外，实施所提出的方案以通过实验评估其逆向工程阻力和性能。</p>
+<h4 id="MBA-Blast：揭示和简化混合布尔算术混淆-MBA-Blast-Unveiling-and-Simplifying-Mixed-Boolean-Arithmetic-Obfuscation"><a href="#MBA-Blast：揭示和简化混合布尔算术混淆-MBA-Blast-Unveiling-and-Simplifying-Mixed-Boolean-Arithmetic-Obfuscation" class="headerlink" title="MBA-Blast：揭示和简化混合布尔算术混淆(MBA-Blast: Unveiling and Simplifying Mixed Boolean-Arithmetic Obfuscation)"></a>MBA-Blast：揭示和简化混合布尔算术混淆(MBA-Blast: Unveiling and Simplifying Mixed Boolean-Arithmetic Obfuscation)</h4><p>在本文中，我们首先揭开 MBA 混淆的底层机制。 我们的深入研究揭示了 1 位和 n 位变量之间 MBA 转换的隐藏双向特征。 我们利用此功能并提出了一种可行的解决方案，以通过 MBA 混淆有效地对代码进行反混淆。 我们的主要见解是 MBA 转换在 1 位和 n 位变量上的行为方式相同。 我们提供了一个数学证明来保证这一发现的正确性。 我们进一步开发了一种新技术，通过在 1 位空间中进行算术缩减，将 MBA 表达式简化为普通的简单形式。 我们将这个想法实现为一个名为 MBA-Blast 的开源原型，并在一个包含大约 10,000 个 MBA 表达式的综合数据集上对其进行了评估。 我们还在真实的二进制代码反混淆场景中测试了我们的方法，这表明 MBA-Blast 可以帮助人类分析师充分利用 SMT 求解器的优势。 与现有工作相比，MBA-Blast 是最通用、最高效的 MBA 反混淆技术； 它具有坚实的理论基础，以及最高的成功率和可忽略的开销。</p>
+<h4 id="LOKI：针对自动攻击强化代码混淆-LOKI-Hardening-Code-Obfuscation-Against-Automated-Attacks"><a href="#LOKI：针对自动攻击强化代码混淆-LOKI-Hardening-Code-Obfuscation-Against-Automated-Attacks" class="headerlink" title="LOKI：针对自动攻击强化代码混淆(LOKI: Hardening Code Obfuscation Against Automated Attacks)"></a>LOKI：针对自动攻击强化代码混淆(LOKI: Hardening Code Obfuscation Against Automated Attacks)</h4><p>在这项工作中，我们介绍了LOKI，一种用于代码混淆的方法，该方法可抵抗所有已知的自动去混淆攻击。为此，我们部署了多种技术，包括一种通用方法来合成经过正式验证的任意复杂性表达式。与依赖于一些硬编码生成规则的最新方法相反，我们的表达方式更加多样化，更难与模式匹配。此外，LOKI可以防止先前未说明的攻击向量 (例如程序合成)，为此它将成功率降低到仅19%。总体而言，我们的设计带来的开销明显更少，同时提供了更强的保护级别。</p>
+<h4 id="基于AST结构和令牌的混淆着陆点轻量级检测方法-Lightweight-Detection-Method-of-Obfuscated-Landing-Sites-Based-on-the-AST-Structure-and-Tokens"><a href="#基于AST结构和令牌的混淆着陆点轻量级检测方法-Lightweight-Detection-Method-of-Obfuscated-Landing-Sites-Based-on-the-AST-Structure-and-Tokens" class="headerlink" title="基于AST结构和令牌的混淆着陆点轻量级检测方法(Lightweight Detection Method of Obfuscated Landing Sites Based on the AST Structure and Tokens)"></a>基于AST结构和令牌的混淆着陆点轻量级检测方法(Lightweight Detection Method of Obfuscated Landing Sites Based on the AST Structure and Tokens)</h4><p>攻击者使用多种技术插入重定向 JavaScript，将用户引导至恶意网页，并在其中执行下载驱动攻击。 特别是，登陆站点中的重定向 JavaScript 被混淆以避免检测系统。 在本文中，我们提出了一种基于静态分析的轻量级检测系统，用于对混淆类型进行分类并及时检测混淆重定向 JavaScript。 所提出的模型通过将 JavaScript 转换为抽象语法树 (AST) 来检测混淆重定向 JavaScript。 然后，提取结构和令牌信息。 具体来说，我们提出了一种轻量级的 AST 来识别混淆类型和修改后的词频-逆文档频率，从而有效地检测恶意重定向 JavaScript。 这种方法可以快速识别混淆的重定向 JavaScript 并主动阻止用于驱动下载攻击的网页。</p>
+<h4 id="分层混淆：用于分层安全的软件混淆技术分类-Layered-obfuscation-a-taxonomy-of-software-obfuscation-techniques-for-layered-security"><a href="#分层混淆：用于分层安全的软件混淆技术分类-Layered-obfuscation-a-taxonomy-of-software-obfuscation-techniques-for-layered-security" class="headerlink" title="分层混淆：用于分层安全的软件混淆技术分类(Layered obfuscation: a taxonomy of software obfuscation techniques for layered security)"></a>分层混淆：用于分层安全的软件混淆技术分类(Layered obfuscation: a taxonomy of software obfuscation techniques for layered security)</h4><p>在本文中，我们基于分层混淆的思想对现有的混淆技术进行了系统的回顾，并开发了一种新的混淆技术分类法。 按照我们的分类层次结构，不同分支下的混淆策略是相互正交的。 通过这种方式，它可以帮助开发人员选择混淆技术，并根据他们的具体需求设计分层的混淆解决方案。</p>
+<h4 id="JShrink：对现代-Java-应用程序裁剪的深入调查（JShrink-In-Depth-Investigation-into-Debloating-Modern-Java-Applications）"><a href="#JShrink：对现代-Java-应用程序裁剪的深入调查（JShrink-In-Depth-Investigation-into-Debloating-Modern-Java-Applications）" class="headerlink" title="JShrink：对现代 Java 应用程序裁剪的深入调查（JShrink: In-Depth Investigation into Debloating Modern Java Applications）"></a>JShrink：对现代 Java 应用程序裁剪的深入调查（JShrink: In-Depth Investigation into Debloating Modern Java Applications）</h4><p>我们开发了一个名为JShrink的端到端字节码消除框架。它通过动态剖析和类型依赖分析来增强传统的静态可达性分析，并更新现有的字节码转换以解决现代Java中的新语言功能。我们重点介绍了一些细微的技术挑战，这些挑战必须正确处理，并通过回归测试检查去肿软件的行为保护。我们发现 (1) JShrink能够使我们的真实Java基准套件膨胀多达47% 个 (平均14% 个); (2) 考虑动态语言功能对于确保行为保护确实至关重要。减少纯静态等价物Jax引起的测试失败98%，和ProGuard的84%; (3) 与纯动态方法相比，将静态分析与动态分析相集成，使膨胀软件对看不见的测试执行更加健壮。在26个项目中的22个中，膨胀软件在新测试下成功运行。</p>
+<h4 id="SOC-Web浏览器安全分析（SOK-On-the-Analysis-of-Web-Browser-Security）"><a href="#SOC-Web浏览器安全分析（SOK-On-the-Analysis-of-Web-Browser-Security）" class="headerlink" title="SOC: Web浏览器安全分析（SOK: On the Analysis of Web Browser Security）"></a>SOC: Web浏览器安全分析（SOK: On the Analysis of Web Browser Security）</h4><p>本文试图通过研究流行的安全漏洞类别、它们的利用技术和部署的防御措施来系统化现代 Web 浏览器的安全环境。 更具体地说，我们首先介绍了一个统一的架构，它忠实地代表了四大 Web 浏览器的安全设计。 其次，我们分享了一项为期 10 年的浏览器漏洞纵向研究的见解。 第三，我们提出了缓解计划及其有效性的时间表和背景。 第四，我们分享了我们在 2020 年 Pwn2Own 比赛中使用的全链漏洞利用的经验教训。 我们相信，这种系统化的关键要点可以揭示如何推进现代网络浏览器的现状，更重要的是，如何在未来创建安全而复杂的软件。</p>
+<h4 id="代码反混淆和特征交互对-Android-恶意软件检测的影响（Impact-of-Code-Deobfuscation-and-Feature-Interaction-in-Android-Malware-Detection）"><a href="#代码反混淆和特征交互对-Android-恶意软件检测的影响（Impact-of-Code-Deobfuscation-and-Feature-Interaction-in-Android-Malware-Detection）" class="headerlink" title="代码反混淆和特征交互对 Android 恶意软件检测的影响（Impact of Code Deobfuscation and Feature Interaction in Android Malware Detection）"></a>代码反混淆和特征交互对 Android 恶意软件检测的影响（Impact of Code Deobfuscation and Feature Interaction in Android Malware Detection）</h4><p>我们将代码反混淆技术与 Android 恶意软件检测系统一起使用并研究其效果。 实验结果表明，代码去混淆可以成功地检索到被混淆隐藏的有用信息。 此外，我们提出了基于识别的特征交互的交互项。 由于许多特征值与应用程序的大小相关，因此提出的交互项旨在消除由应用程序大小和其他特征引起的干扰。 实验结果还表明，这些交互项在特征重要性方面具有很高的排名。 我们提出的 Android 恶意软件检测模型使用著名的 Drebin 数据集实现了 99.55% 的准确率和 94.61% 的 F1 分数，超过了之前工作的性能。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E8%AE%BA%E6%96%87%E8%AE%A1%E5%88%92/">论文计划</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+                    
+                      <a class="hover-with-bg" href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Fuzzing/">Fuzzing</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/08/VMP&amp;Dex2C%EF%BC%88%E5%BE%85%E6%9B%B4%E6%96%B0%EF%BC%89/">
+                        <span class="hidden-mobile">VMP&Dex2C（待更新）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

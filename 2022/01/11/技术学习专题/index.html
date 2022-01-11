@@ -1,0 +1,602 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言这个文案主要是记录自己在技术学习的技术专题，专题是平时学习总结，同时也是自己系统学习的计划，这样可以让自己的学习更加系统，并且可以把平时所学的归纳。这样可以写入文章中。 小专题1、Socket抓包通杀专题主要是分析android下如何实现通杀，学习网络协议的分析和溯源 目前完成度：80% 2、github上优秀的frida工具分析主要的目的是学习frida更多的高级技巧同时也是学习优秀工具的开">
+<meta property="og:type" content="article">
+<meta property="og:title" content="技术学习专题">
+<meta property="og:url" content="http://example.com/2022/01/11/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0%E4%B8%93%E9%A2%98/index.html">
+<meta property="og:site_name" content="Theseus&#39;Blog">
+<meta property="og:description" content="前言这个文案主要是记录自己在技术学习的技术专题，专题是平时学习总结，同时也是自己系统学习的计划，这样可以让自己的学习更加系统，并且可以把平时所学的归纳。这样可以写入文章中。 小专题1、Socket抓包通杀专题主要是分析android下如何实现通杀，学习网络协议的分析和溯源 目前完成度：80% 2、github上优秀的frida工具分析主要的目的是学习frida更多的高级技巧同时也是学习优秀工具的开">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-01-11T04:03:14.590Z">
+<meta property="article:modified_time" content="2022-01-11T04:03:14.590Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Android安全">
+<meta property="article:tag" content="Android加固">
+<meta property="article:tag" content="Android脱壳">
+<meta property="article:tag" content="FRIDA">
+<meta property="article:tag" content="书籍阅读">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>技术学习专题 - Theseus&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Theseus&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="技术学习专题">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-01-11 12:03" pubdate>
+        2022年1月11日 中午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      3.3k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      28 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">技术学习专题</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：几秒前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>这个文案主要是记录自己在技术学习的技术专题，专题是平时学习总结，同时也是自己系统学习的计划，这样可以让自己的学习更加系统，并且可以把平时所学的归纳。这样可以写入文章中。</p>
+<h3 id="小专题"><a href="#小专题" class="headerlink" title="小专题"></a>小专题</h3><h4 id="1、Socket抓包通杀专题"><a href="#1、Socket抓包通杀专题" class="headerlink" title="1、Socket抓包通杀专题"></a>1、Socket抓包通杀专题</h4><p>主要是分析android下如何实现通杀，学习网络协议的分析和溯源</p>
+<p>目前完成度：80%</p>
+<h4 id="2、github上优秀的frida工具分析"><a href="#2、github上优秀的frida工具分析" class="headerlink" title="2、github上优秀的frida工具分析"></a>2、github上优秀的frida工具分析</h4><p>主要的目的是学习frida更多的高级技巧同时也是学习优秀工具的开发原理</p>
+<p>目前完成度：10%</p>
+<h4 id="3、模拟执行so，最高目标对抗混淆"><a href="#3、模拟执行so，最高目标对抗混淆" class="headerlink" title="3、模拟执行so，最高目标对抗混淆"></a>3、模拟执行so，最高目标对抗混淆</h4><p>主要是学习各种模拟执行框架，在不依靠真机的情况下，模拟出so中的函数，达到溯源的目的。同时也是为分析类似于ollvm这类强混淆做准备。</p>
+<p>①、ExAndroidNativeEmu</p>
+<p>②、unicorn</p>
+<p>③、unidbg</p>
+<p>目前完成度：5%</p>
+<h4 id="4、新提上一个专题：各种汇编反汇编器的使用研究"><a href="#4、新提上一个专题：各种汇编反汇编器的使用研究" class="headerlink" title="4、新提上一个专题：各种汇编反汇编器的使用研究"></a>4、新提上一个专题：各种汇编反汇编器的使用研究</h4><p>主要是针对现在市场上出来挺多的汇编与反汇编器的产品，有开源免费使用的，有商用的，主要的目的是研究各个软件的优势，同时也是可以起到研究反编译原理。</p>
+<p>目前完成度：1%（目前仅仅收集了一些工具而已）</p>
+<p>专题需要分析的工具如下：</p>
+<p>高级反汇编器：IDA、JEB、Ghidra</p>
+<p>基础利器：Capstore（编译器）、Keysotre（反汇编器）</p>
+<p>新晋反汇编器：Radare2、binary ninja、Cutter</p>
+<h4 id="5、OLLVM混淆与去混淆对抗"><a href="#5、OLLVM混淆与去混淆对抗" class="headerlink" title="5、OLLVM混淆与去混淆对抗"></a>5、OLLVM混淆与去混淆对抗</h4><p>主要是针对OLLVM这类混淆做出可行性的方案来对抗，主要是的目标还是学习对抗方案和原理，OLLVM的独特性，不同的开发者会加入不同pass，所以很难达到通用的去除办法，开这个研究可以的目的在于总结对抗的通用做法以及辅助分析OLLVM的手段，尽可能的削弱该混淆对逆向分析的阻碍。</p>
+<p>研究大致路径</p>
+<p>①、正向开发研究，手动实现标准开源的OLLVM混淆（demo实现）</p>
+<p>②、剖析OLLVM混淆的实现原理，同时学习LLVM编译器的原理（创新改进，增加pass）</p>
+<p>③、演习对抗方案</p>
+<p>大致可能会涉及到</p>
+<p>1、unidbg模拟执行去混淆</p>
+<p>2、IDA python脚本去混淆</p>
+<p>3、基于frida hook的方式辅助分析</p>
+<p>4、基于angr的方式去混淆（符号执行）</p>
+<p>5、手动patch</p>
+<p>目前完成度 5%（目前仅仅收集了文章，以前有实现但是是基于Linux的）</p>
+<h4 id="6、NDK开发技术与加固壳的研究"><a href="#6、NDK开发技术与加固壳的研究" class="headerlink" title="6、NDK开发技术与加固壳的研究"></a>6、NDK开发技术与加固壳的研究</h4><p>NDK开发已经是Android平台下用的非常多的技术了，很多有效的保护都会是用NDK开发技术，讲重要的代码写在Native层进行保护，ELF的加固手段在已经是很成熟的技术，可以拓展应用到Android平台之上。Native层也可以反射调用java层函数，可以做一些签名校验。</p>
+<p>所以NDK开发是学习写壳的必经之路，写加固很多也是在so层做对抗。</p>
+<p>1、NDK基础开发知识</p>
+<p>2、指令抽取壳的原理与实现</p>
+<p>3、vmp壳的实现</p>
+<p>4、java2C的实现</p>
+<h4 id="7、移动端各种Hook技术研究"><a href="#7、移动端各种Hook技术研究" class="headerlink" title="7、移动端各种Hook技术研究"></a>7、移动端各种Hook技术研究</h4><p>Android下实际上存在很对hook方案很多，同时也涉及到很多hook框架，比较热门的框架如frida、xposed框架，这两个框架在hook世界中运行是非常高频。</p>
+<p>除此之外，很涉及到一下的hook方案</p>
+<p>1、inline hook</p>
+<p>2、got表动态链接库 hook</p>
+<p>3、zygote hook</p>
+<p>4、Unidbg内嵌了多种Hook工具，目前主要是四种</p>
+<ul>
+<li><p>Dobby</p>
+</li>
+<li><p>HookZz</p>
+</li>
+<li><p>xHook</p>
+</li>
+<li><p>Whale</p>
+</li>
+</ul>
+<p>这些hook 在写加固中很常用，同时在分析特定的情况也是很重要的手段，在游戏安全、加固、脱壳等等方面都有很重要的使用价值。因此开设这样一个专题来进行研究hook技术，实际上很对hook框架都是基于底层基础的inline、got等hook技术。</p>
+<h4 id="8、密码学原理研究和魔改，自动化识别算法"><a href="#8、密码学原理研究和魔改，自动化识别算法" class="headerlink" title="8、密码学原理研究和魔改，自动化识别算法"></a>8、密码学原理研究和魔改，自动化识别算法</h4><p>之所以想要系统的研究密码学的知识，主要目的就是如何破译，同时如何快速识别逆向过程中出现的密码学算法，这是理论的研究。之所以研究魔改，意图是提高安全性，对算法的魔改可以在一定程度上阻隔解密的脚步。</p>
+<p>学习的基本要求：</p>
+<ul>
+<li><p>了解基本的原理，学习和阅读相关密码学算法的paper，从数学理论研究到代码实现（Java、C++）</p>
+</li>
+<li><p>寻找各个算法的特征，研究如何自动化识别算法，比如IDA插件findcrypt3、<a target="_blank" rel="noopener" href="https://github.com/Pr0214/findhash">findhash</a>、<a target="_blank" rel="noopener" href="https://github.com/Pr0214/Unidbg_FindKey">unidbug_findKey</a></p>
+</li>
+<li><p>魔改算法，提高安全性能</p>
+</li>
+<li><p>逆向分析Android系统密码学库，逆向有代表性的APP实战</p>
+</li>
+</ul>
+<p>常见的算法</p>
+<p>单向散列加密</p>
+<ul>
+<li><p>SHA-1 安全散列算法</p>
+</li>
+<li><p>MD5 信息摘要算法</p>
+</li>
+<li><p>RIPEMD 基于MD4设计</p>
+</li>
+<li><p>BASE64 编码</p>
+</li>
+<li><p>SHA256 主流加密</p>
+</li>
+<li><p>HMAC 是秘钥相关的哈希运算消息认证码</p>
+</li>
+</ul>
+<p>对称加密</p>
+<ul>
+<li><p>DES Data Encryption Standard</p>
+</li>
+<li><p>3DES 三重DES</p>
+</li>
+<li><p>AES Advanced Encryption Standard</p>
+</li>
+</ul>
+<p>非对称加密</p>
+<ul>
+<li><p>RSA 一种早期非对称算法</p>
+</li>
+<li><p>DSA Digital Signature Algorithm 只用作签名验证</p>
+</li>
+<li><p>ECC 椭圆加密</p>
+</li>
+</ul>
+<h2 id="大专题研究项目"><a href="#大专题研究项目" class="headerlink" title="大专题研究项目"></a>大专题研究项目</h2><h3 id="VMP-java2C等脱壳保护对抗研究"><a href="#VMP-java2C等脱壳保护对抗研究" class="headerlink" title="VMP/java2C等脱壳保护对抗研究"></a>VMP/java2C等脱壳保护对抗研究</h3><h4 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h4><p>这个项目主要是基于主动调用解决掉指令抽取加固后，针对重要方法实现了VMP、java2C加固方案的修复或者自动化的研究。同时该项目也肩负着加壳与脱壳的前沿技术对抗，如何实现尽可能更多的自动化技术。为了完成这个专题的研究，会专门在此文章中收集加固相关的文章作为技术研究支撑。</p>
+<h4 id="论文-文章-paper-收集"><a href="#论文-文章-paper-收集" class="headerlink" title="论文/文章/paper 收集"></a>论文/文章/paper 收集</h4><h4 id="研究路径或者产出文章记录"><a href="#研究路径或者产出文章记录" class="headerlink" title="研究路径或者产出文章记录"></a>研究路径或者产出文章记录</h4><h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><h3 id="Android自动化漏洞检测引擎"><a href="#Android自动化漏洞检测引擎" class="headerlink" title="Android自动化漏洞检测引擎"></a>Android自动化漏洞检测引擎</h3><h4 id="前言-2"><a href="#前言-2" class="headerlink" title="前言"></a>前言</h4><p>这个研究专题目前是紧接着以往的作品开发赛进行延伸，实质上只是技术上的延伸，作品在目前看来框架都是不重要的，重点在于核心检测引擎。自动检测目前实际上开源的挺多的项目，但是不是效果不太明显，就是时效性，项目没人维护。目前计划是学习开源的项目，然后二次开发创新，跟进paper进行课题研究。</p>
+<h2 id="阅读书籍研究项目"><a href="#阅读书籍研究项目" class="headerlink" title="阅读书籍研究项目"></a>阅读书籍研究项目</h2><h3 id="前言-3"><a href="#前言-3" class="headerlink" title="前言"></a>前言</h3><p>之所以想要开设这样的一个专题，其目的在于</p>
+<p>督促自己系统的阅读书籍的习惯，将自己买过的技术书籍，根据实际的需求进行系统的学习，消化经典的书籍；</p>
+<p>其二在于将书籍中的知识完成转化，变成自己的东西，真真实实的把书中的知识吃透并能够在更新迭代之中应用，很多书籍可能由于技术迭代，并不一定适用于当下或者有更加好的技术来实现。</p>
+<p>其三是一直都想做一套完完整整的教程，做开源的项目。</p>
+<p>其四是发现自身的不足，觉得应该系统的学习，改掉坏毛病</p>
+<p>这个专题大致有如下安排或者说目标</p>
+<p>1、每章可自由分小节总结技术文章，有真实案例定不能因为麻烦就不去复现和探索</p>
+<p>2、技术更新，技术辐射到书中未更新的技术知识的补充</p>
+<p>3、不要求一次性写的很完整，但是务必是每一章做到自己目前最大的努力，自己觉得OK才能开始下一章的书写。</p>
+<p>4、在开始一个专题前，可以花费1-2星期对整本书的内容进行快速阅读，掌握书籍的整体脉络。</p>
+<p>5、一段时间专注一件事</p>
+<h3 id="《Android安全攻防权威指南》"><a href="#《Android安全攻防权威指南》" class="headerlink" title="《Android安全攻防权威指南》"></a>《Android安全攻防权威指南》</h3><h3 id="《Android应用安全防护和逆向分析》"><a href="#《Android应用安全防护和逆向分析》" class="headerlink" title="《Android应用安全防护和逆向分析》"></a>《Android应用安全防护和逆向分析》</h3><h3 id="《漏洞战争-软件漏洞分析精要》"><a href="#《漏洞战争-软件漏洞分析精要》" class="headerlink" title="《漏洞战争 软件漏洞分析精要》"></a>《漏洞战争 软件漏洞分析精要》</h3><h2 id="漏洞研究项目"><a href="#漏洞研究项目" class="headerlink" title="漏洞研究项目"></a>漏洞研究项目</h2><h3 id="前言-4"><a href="#前言-4" class="headerlink" title="前言"></a>前言</h3><p>之所以开设这么一个研究项目，主要的目的就是筹备漏洞研究相关的工作，实际上在车联网/物联网安全工作过程中，很多都是多漏洞的挖掘和利用，但是当时自身需要完成项目的需求和能力上的欠缺，并未对漏洞这块进行深入的研究，这是和自身的要求是违背的。</p>
+<p>达到的目的：</p>
+<p>1、利用好手上的资源，比如科恩车联网漏洞报告，科恩的IOT检测平台、Android漏洞检测平台以及其知识库。</p>
+<p>2、分析历史比较重要的CVE漏洞，进行复现和原理分析</p>
+<p>3、自动化漏洞挖掘工具的二次开发，可以学习huluwa的9月报</p>
+<p>4、实现的目的就是挖掘属于自己的漏洞，漏洞类型不限于Android/IOS、IOT设备、车联网设备等等。</p>
+<h3 id="车联网漏洞报告的提取和整理"><a href="#车联网漏洞报告的提取和整理" class="headerlink" title="车联网漏洞报告的提取和整理"></a>车联网漏洞报告的提取和整理</h3><p>主要是整理自己手上的车联网的漏洞报告，提取出比较有学习价值的漏洞报告，如果可以复现也可以自己写demo进行复现。</p>
+<h3 id="Android自动化检测知识库的整理学习"><a href="#Android自动化检测知识库的整理学习" class="headerlink" title="Android自动化检测知识库的整理学习"></a>Android自动化检测知识库的整理学习</h3><p>这个专题主要是学习科恩自动化检测平台的漏洞知识库，熟悉Android的漏洞原理，相应的poc的构造，如何去发现这种类型的漏洞，这里实际上是可以结合当初自己搭建开发自动化检测平台的过程进行反思、对比和总结。</p>
+<h3 id="CVE分析"><a href="#CVE分析" class="headerlink" title="CVE分析"></a>CVE分析</h3><p>这个专题就是实打实的漏洞的复现环节，以前实际上是有收集过一点Android上的CVE漏洞，不过一直没有去分析和复现。所以这个专题在完成上面基本的漏洞知识后就可以展开对漏洞的复现。</p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Android%E5%8A%A0%E5%9B%BA/">Android加固</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Android%E8%84%B1%E5%A3%B3/">Android脱壳</a>
+                    
+                      <a class="hover-with-bg" href="/tags/FRIDA/">FRIDA</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E4%B9%A6%E7%B1%8D%E9%98%85%E8%AF%BB/">书籍阅读</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/01/10/2022%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92%E2%80%94%E2%80%941%E6%9C%88/">
+                        <span class="hidden-mobile">2022论文阅读计划——1月</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

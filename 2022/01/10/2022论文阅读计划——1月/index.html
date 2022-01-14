@@ -26,7 +26,7 @@
 <meta property="og:description" content="您不得重新包装！ 揭秘 Android 上的反重新包装（you Shall not Repackage! Demystifying Anti-packaging on Android）  在这方面，本文旨在提出当前反再包装方法的主要问题。本文的贡献有三个方面: 1) 分析了当前最先进的反重新包装方案的弱点 (即通过Dex加密，AppIS，SSN，SDC，BombDroid和NRP进行自我保护)，2">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-01-10T14:07:07.327Z">
-<meta property="article:modified_time" content="2022-01-12T07:50:56.000Z">
+<meta property="article:modified_time" content="2022-01-14T14:30:56.000Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="学习指南">
 <meta property="article:tag" content="漏洞挖掘">
@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      22k 字
+      24k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      186 分钟
+      199 分钟
     </span>
   
 
@@ -265,7 +265,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：10 分钟前
+                  本文最后更新于：24 分钟前
                 
               </p>
             
@@ -452,6 +452,18 @@
 </blockquote>
 <h5 id="FIRMWIRE：蜂窝基带固件的透明动态分析-FIRMWIRE-Transparent-Dynamic-Analysis-for-Cellular-Baseband-Firmware"><a href="#FIRMWIRE：蜂窝基带固件的透明动态分析-FIRMWIRE-Transparent-Dynamic-Analysis-for-Cellular-Baseband-Firmware" class="headerlink" title="FIRMWIRE：蜂窝基带固件的透明动态分析(FIRMWIRE: Transparent Dynamic Analysis for Cellular Baseband Firmware)"></a>FIRMWIRE：蜂窝基带固件的透明动态分析(FIRMWIRE: Transparent Dynamic Analysis for Cellular Baseband Firmware)</h5><blockquote>
 <p>为了填补这一空白，我们展示了 FIRMWIRE，这是第一个用于执行未修改的基带二进制固件的基带处理器的全系统仿真平台。  FIRMWIRE 提供基带专用 API 以轻松添加对新供应商、固件映像和安全分析的支持。 为了展示 FIRMWIRE 的可扩展性，我们支持 2 个供应商和 9 个手机型号的 213 个固件映像，允许执行和测试它们。 借助这些图像，FIRMWIRE 会自动发现和桥接内部基带 API，从而轻松注入协议消息。 使用这些入口点，我们选择了 LTE 和 GSM 协议进行模糊测试，并发现了 7 个可能导致远程代码执行的预身份验证内存损坏——其中 4 个以前是未知的。 我们在真实设备上通过无线方式重现了这些崩溃，证明了 FIRMWIRE 的仿真准确性。  FIRMWIRE 是一个可扩展的基带安全测试平台，我们将其作为开源发布给社区以供未来研究。</p>
+</blockquote>
+<h5 id="Binder-中的幽灵：Android-系统服务中的-Binder-事务重定向攻击（Ghost-in-the-Binder-Binder-Transaction-Redirection-Attacks-in-Android-System-Services）"><a href="#Binder-中的幽灵：Android-系统服务中的-Binder-事务重定向攻击（Ghost-in-the-Binder-Binder-Transaction-Redirection-Attacks-in-Android-System-Services）" class="headerlink" title="Binder 中的幽灵：Android 系统服务中的 Binder 事务重定向攻击（Ghost in the Binder: Binder Transaction Redirection Attacks in Android System Services）"></a>Binder 中的幽灵：Android 系统服务中的 Binder 事务重定向攻击（Ghost in the Binder: Binder Transaction Redirection Attacks in Android System Services）</h5><blockquote>
+<p>本文提出了 Binder 事务重定向 (BiTRe) 攻击，其中攻击者诱导系统服务与定制的 Binder 服务器进行交易，然后从 Binder 服务器发起攻击——这是一个通常不受保护的方向。 我们通过枚举 BiTRe 中可利用的 Binder 接口来展示攻击面的规模，并发现攻击面随着 Android 发布版本的增长而增长。 在 Android 11 中，超过 70% 的 Binder 接口受 BiTRe 影响或可以在其中使用。 我们通过 (1) 构建一个原型系统来证明攻击的可行性，该系统可以自动生成可执行程序以到达攻击面的大部分，以及 (2) 识别一系列漏洞，这些漏洞被谷歌承认并分配了 10 个 CVE。</p>
+</blockquote>
+<h5 id="使用-multiDEX-和-SO-文件保护-android-应用程序免受逆向工程（Protection-android-app-with-multiDEX-and-SO-ﬁles-from-reverse-engineering）"><a href="#使用-multiDEX-和-SO-文件保护-android-应用程序免受逆向工程（Protection-android-app-with-multiDEX-and-SO-ﬁles-from-reverse-engineering）" class="headerlink" title="使用 multiDEX 和 SO 文件保护 android 应用程序免受逆向工程（Protection android app with multiDEX and SO ﬁles from reverse engineering）"></a>使用 multiDEX 和 SO 文件保护 android 应用程序免受逆向工程（Protection android app with multiDEX and SO ﬁles from reverse engineering）</h5><blockquote>
+<p>我们提出了一种防止逆向工程方法的方法。 我们的目标是防止静态重新打包攻击，并在解密和加载应用程序时提供更高的效率。 我们介绍了基于虚拟机 (VM) 的 MultiDEX 和共享对象 (SO) 保护方法； 在这种方法中，我们使用了新的基于堆栈的本机代码系统。 它在虚拟机下提供了严格的级别保护。 它利用字节码的多个动态虚拟机保护来最小化开销。 我们保护 MutiDex 文件和 SO 文件的方法的显着优势是可用的系统很少，可以同时处理这两种类型的文件。</p>
+</blockquote>
+<h5 id="FuzzingDriver：增加模糊器代码覆盖率的缺失字典（FuzzingDriver-the-Missing-Dictionary-to-Increase-Code-Coverage-in-Fuzzers）"><a href="#FuzzingDriver：增加模糊器代码覆盖率的缺失字典（FuzzingDriver-the-Missing-Dictionary-to-Increase-Code-Coverage-in-Fuzzers）" class="headerlink" title="FuzzingDriver：增加模糊器代码覆盖率的缺失字典（FuzzingDriver: the Missing Dictionary to Increase Code Coverage in Fuzzers）"></a>FuzzingDriver：增加模糊器代码覆盖率的缺失字典（FuzzingDriver: the Missing Dictionary to Increase Code Coverage in Fuzzers）</h5><blockquote>
+<p>我们提出了一个名为 FuzzingDriver 的工具，用于从任何目标程序的代码库中为基于覆盖的灰盒模糊器 (CGF) 生成字典标记。  FuzzingDriver 不会为模糊测试作业增加任何开销，因为它是预先运行的。 我们通过对六个开源目标进行模糊测试将 FuzzingDriver 与 Google 词典进行了比较，我们发现 FuzzingDriver 在所有测试中始终实现更高的代码覆盖率。 我们还在 FuzzBench 上执行了 8 个基准测试，以展示使用 FuzzingDriver 的字典如何优于 6 个广泛使用的 CGF 模糊器。 在未来的工作中，调查 FuzzingDriver 的字典对提高 bug 覆盖率的影响可能很重要。 视频演示：<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Y8j_KvfRrI8">https://www.youtube.com/watch?v=Y8j_KvfRrI8</a></p>
+</blockquote>
+<h5 id="BEACON：具有可证明路径修剪的定向灰盒模糊测试（BEACON-Directed-Grey-Box-Fuzzing-with-Provable-Path-Pruning）资源"><a href="#BEACON：具有可证明路径修剪的定向灰盒模糊测试（BEACON-Directed-Grey-Box-Fuzzing-with-Provable-Path-Pruning）资源" class="headerlink" title="BEACON：具有可证明路径修剪的定向灰盒模糊测试（BEACON : Directed Grey-Box Fuzzing with Provable Path Pruning）资源"></a>BEACON：具有可证明路径修剪的定向灰盒模糊测试（<a target="_blank" rel="noopener" href="https://5hadowblad3.github.io/files/Oakland22-Beacon.pdf">BEACON : Directed Grey-Box Fuzzing with Provable Path Pruning</a>）<a target="_blank" rel="noopener" href="https://hub.docker.com/r/yguoaz/beacon">资源</a></h5><blockquote>
+<p>本文介绍了 BEACON，它可以以可证明的方式有效地将灰盒模糊器引导到路径的海洋中。 也就是说，在计算达到目标的抽象先决条件的轻量级静态分析的辅助下，我们可以在运行时修剪 82.94% 的执行路径，而分析开销可以忽略不计（ă5h），但要保证修剪后的路径必须是虚假的 目标。 我们已经实现了我们的方法 BEACON，并将其与漏洞再现应用场景中的五个最先进的（定向）模糊器进行了比较。 评估结果表明，BEACON 平均比现有的定向灰盒模糊器快 11.50 倍，它还可以提高传统覆盖引导模糊器 AFL、AFL++ 和 Mopt 的速度，以 6.31 倍重现特定错误，11.86 x 和 10.92x 加速，分别。 更有趣的是，当用于测试漏洞补丁时，BEACON 发现了 14 个现有 CVE 识别漏洞的不完整修复和 8 个新错误，其中 10 个可通过分配新的 CVE id 进行利用。</p>
 </blockquote>
 
             </div>

@@ -215,7 +215,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      24k 字
+      26k 字
     </span>
   
 
@@ -224,7 +224,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      199 分钟
+      219 分钟
     </span>
   
 
@@ -265,7 +265,7 @@
             
               <p class="note note-info">
                 
-                  本文最后更新于：24 分钟前
+                  本文最后更新于：1 个月前
                 
               </p>
             
@@ -464,6 +464,24 @@
 </blockquote>
 <h5 id="BEACON：具有可证明路径修剪的定向灰盒模糊测试（BEACON-Directed-Grey-Box-Fuzzing-with-Provable-Path-Pruning）资源"><a href="#BEACON：具有可证明路径修剪的定向灰盒模糊测试（BEACON-Directed-Grey-Box-Fuzzing-with-Provable-Path-Pruning）资源" class="headerlink" title="BEACON：具有可证明路径修剪的定向灰盒模糊测试（BEACON : Directed Grey-Box Fuzzing with Provable Path Pruning）资源"></a>BEACON：具有可证明路径修剪的定向灰盒模糊测试（<a target="_blank" rel="noopener" href="https://5hadowblad3.github.io/files/Oakland22-Beacon.pdf">BEACON : Directed Grey-Box Fuzzing with Provable Path Pruning</a>）<a target="_blank" rel="noopener" href="https://hub.docker.com/r/yguoaz/beacon">资源</a></h5><blockquote>
 <p>本文介绍了 BEACON，它可以以可证明的方式有效地将灰盒模糊器引导到路径的海洋中。 也就是说，在计算达到目标的抽象先决条件的轻量级静态分析的辅助下，我们可以在运行时修剪 82.94% 的执行路径，而分析开销可以忽略不计（ă5h），但要保证修剪后的路径必须是虚假的 目标。 我们已经实现了我们的方法 BEACON，并将其与漏洞再现应用场景中的五个最先进的（定向）模糊器进行了比较。 评估结果表明，BEACON 平均比现有的定向灰盒模糊器快 11.50 倍，它还可以提高传统覆盖引导模糊器 AFL、AFL++ 和 Mopt 的速度，以 6.31 倍重现特定错误，11.86 x 和 10.92x 加速，分别。 更有趣的是，当用于测试漏洞补丁时，BEACON 发现了 14 个现有 CVE 识别漏洞的不完整修复和 8 个新错误，其中 10 个可通过分配新的 CVE id 进行利用。</p>
+</blockquote>
+<h5 id="Fuzzware：使用精确的-MMIO-建模进行有效的固件-Fuzzing（Fuzzware-Using-Precise-MMIO-Modeling-for-Effective-Firmware-Fuzzing）资料"><a href="#Fuzzware：使用精确的-MMIO-建模进行有效的固件-Fuzzing（Fuzzware-Using-Precise-MMIO-Modeling-for-Effective-Firmware-Fuzzing）资料" class="headerlink" title="Fuzzware：使用精确的 MMIO 建模进行有效的固件 Fuzzing（Fuzzware: Using Precise MMIO Modeling for Effective Firmware Fuzzing）资料"></a>Fuzzware：使用精确的 MMIO 建模进行有效的固件 Fuzzing（Fuzzware: Using Precise MMIO Modeling for Effective Firmware Fuzzing）<a target="_blank" rel="noopener" href="https://github.com/fuzzware-fuzzer/fuzzware-experiments">资料</a></h5><blockquote>
+<p>我们评估了我们在合成和真实世界目标上的方法，包括总共 19 个硬件平台和 77 个固件映像。 与最先进的工作相比，FUZZWARE 实现了高达 3.25 倍的代码覆盖率，我们的建模方法将输入空间的大小减少了高达 95.5%。 合成样本包含针对各种硬件交互的 66 个单元测试，我们发现我们的方法是第一个自动通过所有这些的通用重新托管解决方案。  FUZZWARE 发现了 15 个全新的 bug，包括之前被其他作品分析过的目标中的 bug； 总共分配了 12 个 CVE。</p>
+</blockquote>
+<h5 id="这个鬼鬼祟祟的小猪进军安卓广告市场：滥用移动传感器进行隐蔽数据泄露（This-Sneaky-Piggy-Went-to-the-Android-Ad-Market-Misusing-Mobile-Sensors-for-Stealthy-Data-Exfiltration）"><a href="#这个鬼鬼祟祟的小猪进军安卓广告市场：滥用移动传感器进行隐蔽数据泄露（This-Sneaky-Piggy-Went-to-the-Android-Ad-Market-Misusing-Mobile-Sensors-for-Stealthy-Data-Exfiltration）" class="headerlink" title="这个鬼鬼祟祟的小猪进军安卓广告市场：滥用移动传感器进行隐蔽数据泄露（This Sneaky Piggy Went to the Android Ad Market:Misusing Mobile Sensors for Stealthy Data Exfiltration）"></a>这个鬼鬼祟祟的小猪进军安卓广告市场：滥用移动传感器进行隐蔽数据泄露（This Sneaky Piggy Went to the Android Ad Market:Misusing Mobile Sensors for Stealthy Data Exfiltration）</h5><blockquote>
+<p>在本文中，我们介绍了一种新的攻击向量，它滥用广告生态系统来提供利用移动传感器的复杂和隐秘的攻击。 这些攻击不依赖于任何特殊的应用权限或特定的用户操作，并且由于对 WebView 中传感器数据的访问控制不当，会影响所有包含应用内广告的 Android 应用。 我们概述了如何使用运动传感器数据在两种不同的攻击场景中推断用户的敏感触摸输入（例如信用卡信息），即应用内和应用间数据泄露。 前者针对的是展示广告的应用，后者则影响设备上运行的所有其他 Android 应用。 更糟糕的是，我们发现了 Android 的应用程序隔离、生命周期管理和访问控制机制中的严重缺陷，即使在显示广告的应用程序被移到后台或被用户终止后，这些漏洞也会导致持久的数据泄露。 此外，由于应用内广告可以“搭载”应用核心功能的权限，它们还可以从摄像头、麦克风和 GPS 等受保护的传感器获取信息。 为了对这一新兴威胁进行全面评估，我们对官方 Android Play 商店中可用应用中显示的广告进行了大规模的端到端动态分析。 我们的研究表明，野外的广告已经在访问和泄露从运动传感器获得的数据，因此强调需要更严格的访问控制策略和隔离机制。</p>
+</blockquote>
+<h5 id="通过无效引导知识推理的自动固件仿真（Automatic-Firmware-Emulation-through-Invalidity-guided-Knowledge-Inference）资料"><a href="#通过无效引导知识推理的自动固件仿真（Automatic-Firmware-Emulation-through-Invalidity-guided-Knowledge-Inference）资料" class="headerlink" title="通过无效引导知识推理的自动固件仿真（Automatic Firmware Emulation through Invalidity-guided Knowledge Inference）资料"></a>通过无效引导知识推理的自动固件仿真（Automatic Firmware Emulation through Invalidity-guided Knowledge Inference）<a target="_blank" rel="noopener" href="https://github.com/MCUSec/uEmu">资料</a></h5><blockquote>
+<p>由于硬件和固件之间的紧密耦合，为微控制器模拟固件具有挑战性。 这极大地阻碍了动态分析工具在固件分析中的应用。 最先进的工作通过观察未知外设的访问模式自动建模未知外设，然后在访问未知外设寄存器时利用启发式计算适当的响应。 然而，我们凭经验发现，这种方法和相应的启发式方法通常不足以模拟固件。 在这项工作中，我们提出了一种称为 µEmu 的新方法来模拟具有未知外围设备的固件。 与试图为每个外围设备构建通用模型的现有工作不同，我们的方法学习如何正确模拟各个外围设备接入点的固件执行。 它将图像作为输入，并通过将未知的外围寄存器表示为符号来象征性地执行它。 在符号执行期间，它推断规则以响应未知的外围访问。 这些规则存储在知识库中，在动态固件分析期间会引用该知识库。  µEmu在没有任何人工辅助的情况下，在外围驱动的一组单元测试中达到了95%的通过率。 我们还使用真实世界的固件样本评估了 µEmu，并发现了新的错误。</p>
+</blockquote>
+<h5 id="PGFUZZ：机器人车辆的策略引导模糊测试（PGFUZZ-Policy-Guided-Fuzzing-for-Robotic-Vehicles）"><a href="#PGFUZZ：机器人车辆的策略引导模糊测试（PGFUZZ-Policy-Guided-Fuzzing-for-Robotic-Vehicles）" class="headerlink" title="PGFUZZ：机器人车辆的策略引导模糊测试（PGFUZZ: Policy-Guided Fuzzing for Robotic Vehicles）"></a>PGFUZZ：机器人车辆的策略引导模糊测试（PGFUZZ: Policy-Guided Fuzzing for Robotic Vehicles）</h5><blockquote>
+<p>在本文中，我们介绍了 PGFUZZ，这是一种策略引导的模糊测试框架，它验证 RV 是否遵守涵盖用户命令、配置参数和物理状态的已识别安全和功能策略。 PGFUZZ 通过具有时间约束的时间逻辑公式表达所需的策略，作为对分析系统进行模糊测试的指南。 具体来说，它生成模糊输入，以最小化距离度量，以测量 RV 当前状态与策略违规的“距离”。 此外，它使用静态和动态分析将模糊测试工作集中在那些影响任何已执行策略的“真实值”的命令、参数和环境因素上。 这两种技术的结合使 PGFUZZ 显着提高了模糊测试过程的效率。我们在三个 RV 控制程序 ArduPilot、PX4 和 Paparazzi 上使用 56 个独特的策略验证 PGFUZZ。 PGFUZZ 发现了 156 个以前未知的错误，其中 106 个已被其开发人员承认。</p>
+</blockquote>
+<h5 id="预防和检测-Android-上的状态推理攻击-Preventing-and-Detecting-State-Inference-Attacks-on-Android"><a href="#预防和检测-Android-上的状态推理攻击-Preventing-and-Detecting-State-Inference-Attacks-on-Android" class="headerlink" title="预防和检测 Android 上的状态推理攻击(Preventing and Detecting State Inference Attacks on Android)"></a>预防和检测 Android 上的状态推理攻击(Preventing and Detecting State Inference Attacks on Android)</h5><blockquote>
+<p>在这项工作中，我们展示了 Android 平台如何仍然受到状态推理攻击的影响。 我们系统地扩展了攻击面，我们设计了一个新的自动框架，发现了 18 个新的易受攻击的 API，这些 API 泄露了敏感信息，影响了 Android 8.1 和 9。作为第二个贡献，我们描述了恶意应用程序中的轮询行为，更重要的是，良性应用程序 ，发现允许它们正确分类的差异。 我们利用这些发现来设计和实现一种新的设备检测机制，即使在利用未知的易受攻击的 API 时，也能从根本上阻止状态推断攻击，而且开销可以忽略不计，而且不会牺牲可用性。</p>
+</blockquote>
+<h5 id="SymQEMU：二进制文件的基于编译的符号执行（SymQEMU-Compilation-based-symbolic-execution-for-binaries）"><a href="#SymQEMU：二进制文件的基于编译的符号执行（SymQEMU-Compilation-based-symbolic-execution-for-binaries）" class="headerlink" title="SymQEMU：二进制文件的基于编译的符号执行（SymQEMU: Compilation-based symbolic execution for binaries）"></a>SymQEMU：二进制文件的基于编译的符号执行（SymQEMU: Compilation-based symbolic execution for binaries）</h5><blockquote>
+<p>我们介绍了 SymQEMU，这是一种将基于编译的符号执行应用于二进制文件的新方法。 我们的评估表明，SymQEMU 明显优于最先进的二进制符号执行器，甚至跟上基于源的技术。 此外，SymQEMU 很容易扩展到许多目标架构，只需要几行代码即可支持 QEMU 可以处理的任何架构。 最后，我们通过在经过大量测试的 libarchive 库中发现以前未知的内存错误来展示 SymQEMU 的实际用途。</p>
 </blockquote>
 
             </div>

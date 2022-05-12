@@ -1,0 +1,654 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="2022.02.20已经入职字节三天啦，差不多算是投入又一段工作之中，所以就干脆划分了一个新的文档来记录每天看到的有意思的知识点。 1、吾爱破解 2022 春节红包题目的题解 https:&#x2F;&#x2F;www.52pojie.cn&#x2F;forum.php?mod&#x3D;viewthread&amp;tid&#x3D;1588907 2、学习GNN的一个学习计划路径 https:&#x2F;&#x2F;github.com&#x2F;dair-ai&#x2F;GNNs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="每日checklist（2.20-4.26）">
+<meta property="og:url" content="http://example.com/2022/05/12/%E6%AF%8F%E6%97%A5checklist%EF%BC%882.20-4.26%EF%BC%89/index.html">
+<meta property="og:site_name" content="Theseus&#39;Blog">
+<meta property="og:description" content="2022.02.20已经入职字节三天啦，差不多算是投入又一段工作之中，所以就干脆划分了一个新的文档来记录每天看到的有意思的知识点。 1、吾爱破解 2022 春节红包题目的题解 https:&#x2F;&#x2F;www.52pojie.cn&#x2F;forum.php?mod&#x3D;viewthread&amp;tid&#x3D;1588907 2、学习GNN的一个学习计划路径 https:&#x2F;&#x2F;github.com&#x2F;dair-ai&#x2F;GNNs">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-12T13:00:52.038Z">
+<meta property="article:modified_time" content="2022-05-12T13:00:52.039Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="学习指南">
+<meta property="article:tag" content="漏洞挖掘">
+<meta property="article:tag" content="IOT安全">
+<meta property="article:tag" content="Android安全">
+<meta property="article:tag" content="Fuzzing">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  <title>每日checklist（2.20-4.26） - Theseus&#39;Blog</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hint.css@2/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Theseus&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="每日checklist（2.20-4.26）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2022-05-12 21:00" pubdate>
+        2022年5月12日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      6.7k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      56 分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- 不蒜子统计文章PV -->
+      <span id="busuanzi_container_page_pv" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="busuanzi_value_page_pv"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">每日checklist（2.20-4.26）</h1>
+            
+              <p class="note note-info">
+                
+                  本文最后更新于：2 分钟前
+                
+              </p>
+            
+            <div class="markdown-body">
+              <h3 id="2022-02-20"><a href="#2022-02-20" class="headerlink" title="2022.02.20"></a>2022.02.20</h3><p>已经入职字节三天啦，差不多算是投入又一段工作之中，所以就干脆划分了一个新的文档来记录每天看到的有意思的知识点。</p>
+<p>1、吾爱破解 2022 春节红包题目的题解</p>
+<p><a target="_blank" rel="noopener" href="https://www.52pojie.cn/forum.php?mod=viewthread&amp;tid=1588907">https://www.52pojie.cn/forum.php?mod=viewthread&amp;tid=1588907</a></p>
+<p>2、学习GNN的一个学习计划路径</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/dair-ai/GNNs-Recipe">https://github.com/dair-ai/GNNs-Recipe</a></p>
+<p>3、rust fuzz相关的教程</p>
+<p><a target="_blank" rel="noopener" href="https://rust-fuzz.github.io/book/introduction.html">https://rust-fuzz.github.io/book/introduction.html</a></p>
+<p>4、WIFI Security: From 0 To 1 - Sili Luo</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=MIbPKLq2AYQ">https://www.youtube.com/watch?v=MIbPKLq2AYQ</a></p>
+<p>5、Awesome Executable Packing 讲解可执行文件的包</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/dhondta/awesome-executable-packing">https://github.com/dhondta/awesome-executable-packing</a></p>
+<p>6、一个关于pwn的（exploiting binary files）的课程</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/rosehgal/BinExp">https://github.com/rosehgal/BinExp</a></p>
+<p>7、Android加壳脱壳学习——动态加载和类加载机制详解</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271538.htm">https://bbs.pediy.com/thread-271538.htm</a></p>
+<p>8、exploiting CVE-2019-2215</p>
+<p><a target="_blank" rel="noopener" href="https://cutesmilee.github.io/kernel/linux/android/2022/02/17/cve-2019-2215_writeup.html">https://cutesmilee.github.io/kernel/linux/android/2022/02/17/cve-2019-2215_writeup.html</a></p>
+<p>9、简单完善了arm64 ollvm去混淆机制</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271557.htm">https://bbs.pediy.com/thread-271557.htm</a></p>
+<p>10、通过抖音学习QUIC协议</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271566.htm">https://bbs.pediy.com/thread-271566.htm</a></p>
+<p>11、快手sig3 48位算法逆向分析</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271489.htm">https://bbs.pediy.com/thread-271489.htm</a></p>
+<h3 id="2022-02-21"><a href="#2022-02-21" class="headerlink" title="2022.02.21"></a>2022.02.21</h3><p>1、线性的MBA混淆的LLVM pass</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271574.htm">https://bbs.pediy.com/thread-271574.htm</a></p>
+<p>2、BeaconFuzz，关于区块链的fuzz</p>
+<p><a target="_blank" rel="noopener" href="https://fuzzinglabs.com/wp-content/uploads/2022/02/Beaconfuzz_OffensiveCon2022_patrick_ventuzelo.pdf">https://fuzzinglabs.com/wp-content/uploads/2022/02/Beaconfuzz_OffensiveCon2022_patrick_ventuzelo.pdf</a></p>
+<h3 id="2022-02-25"><a href="#2022-02-25" class="headerlink" title="2022.02.25"></a>2022.02.25</h3><p>1、深度剖析ja3指纹及突破</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/-i730kN_f5sIvh6kj7k5JQ">https://mp.weixin.qq.com/s/-i730kN_f5sIvh6kj7k5JQ</a></p>
+<p>2、一个非常不错的Android逆向｜JS逆向的实战博客</p>
+<p><a target="_blank" rel="noopener" href="https://www.qinless.com/all">https://www.qinless.com/all</a></p>
+<p>3、Android奇艺技巧系列的博客，是非常不错的学android逆向的博客</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/theseventhson/p/">https://www.cnblogs.com/theseventhson/p/</a></p>
+<p>4、头条系列使用的开源的网络协议框架的wiki</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/hanpfei/chromium-net/wiki">https://github.com/hanpfei/chromium-net/wiki</a></p>
+<h3 id="2022-03-06"><a href="#2022-03-06" class="headerlink" title="2022.03.06"></a>2022.03.06</h3><p>1、一款基于LLVM的混淆工具</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/bluesadi/Pluto-Obfuscator">https://github.com/bluesadi/Pluto-Obfuscator</a></p>
+<p>2、对AFL的讲解论文</p>
+<p><a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf">https://www.s3.eurecom.fr/docs/fuzzing22_fioraldi_report.pdf</a></p>
+<p>3、Reverse Engineering a Street Fighter Two Cabinet，关于IOT的逆向</p>
+<p><a target="_blank" rel="noopener" href="https://wrongbaud.github.io/sf-slides/#1">https://wrongbaud.github.io/sf-slides/#1</a></p>
+<h3 id="2022-03-09"><a href="#2022-03-09" class="headerlink" title="2022.03.09"></a>2022.03.09</h3><p>1、一个cs video的清单</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Developer-Y/cs-video-courses">https://github.com/Developer-Y/cs-video-courses</a></p>
+<h3 id="2022-03-16"><a href="#2022-03-16" class="headerlink" title="2022.03.16"></a>2022.03.16</h3><p>1、基于llvm的变量轮转混淆pass实现</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271867.htm">https://bbs.pediy.com/thread-271867.htm</a></p>
+<p>2、angr符号转LLVM-IR</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271866.htm">https://bbs.pediy.com/thread-271866.htm</a></p>
+<p>3、对蛋蛋模拟器的分析（7.7版本）so解密、vmp还原</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271879.htm">https://bbs.pediy.com/thread-271879.htm</a></p>
+<p>4、一个通用了Android SVC跟踪以及hook方案——Frida-Seccomp</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-271815.htm">https://bbs.pediy.com/thread-271815.htm</a></p>
+<p>5、一款IDA插件来发掘漏洞——VulFi</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/Accenture/VulFi">https://github.com/Accenture/VulFi</a></p>
+<p>6、mathematic for mamachine Learning PDF</p>
+<p><a target="_blank" rel="noopener" href="https://mml-book.github.io/book/mml-book.pdf">https://mml-book.github.io/book/mml-book.pdf</a></p>
+<p>7、Arbiter: Bridging the Static and Dynamic Divide in Vulnerability Discovery on Binary Programs</p>
+<p><a target="_blank" rel="noopener" href="https://www.s3.eurecom.fr/docs/usenixsec22_arbiter.pdf">https://www.s3.eurecom.fr/docs/usenixsec22_arbiter.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/DZ2Nd5sIjWOuAGwLzBEQGQ">https://mp.weixin.qq.com/s/DZ2Nd5sIjWOuAGwLzBEQGQ</a></p>
+<p>8、理解系统调用流程</p>
+<p><a target="_blank" rel="noopener" href="https://de-engineer.github.io/Understanding-booting-process-and-writing-own-os/">Understanding the booting process of a computer and trying to write own operating system.</a></p>
+<p>9、IOS hacking：A guide to hacking IOS’s APP</p>
+<p><a target="_blank" rel="noopener" href="https://martabyte.github.io/ios/hacking/2022/03/13/ios-hacking-en.html">https://martabyte.github.io/ios/hacking/2022/03/13/ios-hacking-en.html</a></p>
+<p>10、introduction to Deep Learning MIT s191</p>
+<p><a target="_blank" rel="noopener" href="http://introtodeeplearning.com/">http://introtodeeplearning.com/</a></p>
+<p>11、fuzz Arm and mips binary using QEMU mode with AFL++</p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=0iyviukkANY">https://www.youtube.com/watch?v=0iyviukkANY</a></p>
+<h3 id="2022-03-22"><a href="#2022-03-22" class="headerlink" title="2022.03.22"></a>2022.03.22</h3><p>1、一款关于LLVM相关的项目搜集文档</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/These-us/awesome-llvm-security">https://github.com/These-us/awesome-llvm-security</a></p>
+<p>2、Linux-kernel-wiki 一个总结的不错的项目</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/0voice/linux_kernel_wiki">https://github.com/0voice/linux_kernel_wiki</a></p>
+<h3 id="2022-03-24"><a href="#2022-03-24" class="headerlink" title="2022.03.24"></a>2022.03.24</h3><p>1、piexl6 root exp工具</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/polygraphene/DirtyPipe-Android">https://github.com/polygraphene/DirtyPipe-Android</a></p>
+<p>2、一款IDA 插件来去除ollvm混淆</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/obpo-project/obpo-plugin">https://github.com/obpo-project/obpo-plugin</a></p>
+<p>3、关于deeplearning最新的课程</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/dair-ai/ML-Course-Notes">https://github.com/dair-ai/ML-Course-Notes</a></p>
+<p>4、关于 anti-frida 和 anti-hook</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apkunpacker/Frida-Detection">https://github.com/apkunpacker/Frida-Detection</a></p>
+<p>5、codeql学习资源</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ASTTeam/CodeQL#01-CodeQL%E8%B5%84%E6%BA%90">https://github.com/ASTTeam/CodeQL#01-CodeQL%E8%B5%84%E6%BA%90</a></p>
+<h3 id="2022-03-26"><a href="#2022-03-26" class="headerlink" title="2022.03.26"></a>2022.03.26</h3><p>1、算法还原文章开源</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/YotaGit/AlgorithmRestore">https://github.com/YotaGit/AlgorithmRestore</a></p>
+<p>2、一款工具ebuf +hook实现免证书抓包</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/ehids/ecapture">https://github.com/ehids/ecapture</a></p>
+<h3 id="2022-03-28"><a href="#2022-03-28" class="headerlink" title="2022.03.28"></a>2022.03.28</h3><p>1、对flutter开发的某APP逆向分析</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/pXpfXK-Ez0n70f3bqFuuFg">https://mp.weixin.qq.com/s/pXpfXK-Ez0n70f3bqFuuFg</a></p>
+<p>对应的APP:tech.echoing.kuril</p>
+<h3 id="2022-03-29"><a href="#2022-03-29" class="headerlink" title="2022.03.29"></a>2022.03.29</h3><p>1、android so 文件解析</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272077.htm">https://bbs.pediy.com/thread-272077.htm</a></p>
+<h3 id="2022-03-31"><a href="#2022-03-31" class="headerlink" title="2022.03.31"></a>2022.03.31</h3><p>1、一个专注于LLVM安全的一个博客</p>
+<p><a target="_blank" rel="noopener" href="https://maskray.me/blog/">https://maskray.me/blog/</a></p>
+<p>2、一个针对android保护的一个演讲，主要是去讲解如何绕过对逆向工具的检测</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/FrenchYeti/unrasp/blob/main/Slides/Forging_golden_hammer_against_android_app_protections_INSO22_FINAL.pdf">https://github.com/FrenchYeti/unrasp/blob/main/Slides/Forging_golden_hammer_against_android_app_protections_INSO22_FINAL.pdf</a></p>
+<p>3、CTF中Linux内核态漏洞挖掘与利用</p>
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/270917">https://www.anquanke.com/post/id/270917</a></p>
+<p>4、京东算法分析</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272100.htm">https://bbs.pediy.com/thread-272100.htm</a></p>
+<p>5、CTF中glibc堆利用及IO_FILE总结</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272098.htm">https://bbs.pediy.com/thread-272098.htm</a></p>
+<h3 id="2022-04-02"><a href="#2022-04-02" class="headerlink" title="2022.04.02"></a>2022.04.02</h3><p>1、angr来对抗控制流混淆</p>
+<p>[<a target="_blank" rel="noopener" href="https://research.openanalysis.net/angr/symbolic%20execution/deobfuscation/research/2022/03/26/angr_notes.html]">https://research.openanalysis.net/angr/symbolic%20execution/deobfuscation/research/2022/03/26/angr_notes.html]</a>(<a target="_blank" rel="noopener" href="https://research.openanalysis.net/angr/symbolic">https://research.openanalysis.net/angr/symbolic</a> execution/deobfuscation/research/2022/03/26/angr_notes.html)</p>
+<p>2、基于符号执行的漏洞挖掘</p>
+<p><a target="_blank" rel="noopener" href="https://docs.google.com/presentation/d/1E3uE-4mYpenw0s40rtMbIdxj3fJgC79aHCeiIlJSY5Y/edit#slide=id.g114834d1ad4_1_727">https://docs.google.com/presentation/d/1E3uE-4mYpenw0s40rtMbIdxj3fJgC79aHCeiIlJSY5Y/edit#slide=id.g114834d1ad4_1_727</a></p>
+<h3 id="2022-04-03"><a href="#2022-04-03" class="headerlink" title="2022.04.03"></a>2022.04.03</h3><p>1、一个爬取安全圈大佬们的榜单</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/firmianay/SecurityDalao">https://github.com/firmianay/SecurityDalao</a></p>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h3 id="2022-04-05"><a href="#2022-04-05" class="headerlink" title="2022.04.05"></a>2022.04.05</h3><p>1、一个学习go语言的开源书籍</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md">https://github.com/astaxie/build-web-application-with-golang/blob/master/zh/preface.md</a></p>
+<p>2、App逆向百例</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/mp/homepage?__biz=MzUxMjU3ODc1MA==&amp;hid=4&amp;sn=9ecf0ec80803784b36319cc6747d1f6a&amp;scene=18#wechat_redirect">https://mp.weixin.qq.com/mp/homepage?__biz=MzUxMjU3ODc1MA==&amp;hid=4&amp;sn=9ecf0ec80803784b36319cc6747d1f6a&amp;scene=18#wechat_redirect</a></p>
+<h3 id="2022-04-06"><a href="#2022-04-06" class="headerlink" title="2022.04.06"></a>2022.04.06</h3><p>1、Android native hook讲解：got、inline hook</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/spinchao/article/details/108300557">https://blog.csdn.net/spinchao/article/details/108300557</a></p>
+<p>2、知乎分析</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272184.htm">https://bbs.pediy.com/thread-272184.htm</a></p>
+<p>3、能够直接运行Android的dex文件的模拟器工具 appdbg</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/asmjmp0/appdbg">https://github.com/asmjmp0/appdbg</a></p>
+<p>4、Frida Internal - Part 1: 架构、Gum 与 V8</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/P6WGhDL3b4qB-edyc4hpXg">https://mp.weixin.qq.com/s/P6WGhDL3b4qB-edyc4hpXg</a></p>
+<h3 id="2022-04-07"><a href="#2022-04-07" class="headerlink" title="2022.04.07"></a>2022.04.07</h3><p>1、对某火APP的算法逆向和还原</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272202.htm">https://bbs.pediy.com/thread-272202.htm</a></p>
+<h3 id="2022-04-08"><a href="#2022-04-08" class="headerlink" title="2022.04.08"></a>2022.04.08</h3><p>1、So逆向 某狗音乐登陆算法逆向 </p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/amtCCf7-A4XtdTyfVaqgIA">https://mp.weixin.qq.com/s/amtCCf7-A4XtdTyfVaqgIA</a></p>
+<p>2、Linux中基于eBPF的恶意利用与监测机制</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/SQ-3fO5ZInqB5aeKCPpluw">https://mp.weixin.qq.com/s/SQ-3fO5ZInqB5aeKCPpluw</a></p>
+<p>3、sgmain 6.4.x加密算法还原 天猫8.1</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/w5RM4UrJ5_xK22y5JxtADg">https://mp.weixin.qq.com/s/w5RM4UrJ5_xK22y5JxtADg</a></p>
+<h3 id="2022-04-09"><a href="#2022-04-09" class="headerlink" title="2022.04.09"></a>2022.04.09</h3><p>1、爱加密加固产品原理分析-定制版</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/mbqQbQZDIj5trfwVYmQoqQ">https://mp.weixin.qq.com/s/mbqQbQZDIj5trfwVYmQoqQ</a></p>
+<p>2、frida internal -part2：核心组件 frida-core</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/TJkGsm9UaSkC4AFXj9fGHw">https://mp.weixin.qq.com/s/TJkGsm9UaSkC4AFXj9fGHw</a></p>
+<p>3、学习Java、android项目必备的打包插件gradle，看官方文档更加容易理解</p>
+<p><a target="_blank" rel="noopener" href="https://docs.gradle.org/7.4.2/userguide/userguide.html">https://docs.gradle.org/7.4.2/userguide/userguide.html</a></p>
+<h3 id="2022-04-10"><a href="#2022-04-10" class="headerlink" title="2022.04.10"></a>2022.04.10</h3><p>1、某度魔改base64算法还原</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/Ejf5QTO2dd0LaZqnvcIKXg">https://mp.weixin.qq.com/s/Ejf5QTO2dd0LaZqnvcIKXg</a></p>
+<p>2、快手花指令</p>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/3k7_OiThHLpsMkhqtymeQA">https://mp.weixin.qq.com/s/3k7_OiThHLpsMkhqtymeQA</a></p>
+<h3 id="2022-04-12"><a href="#2022-04-12" class="headerlink" title="2022.04.12"></a>2022.04.12</h3><p>1、Android13 深度剖析</p>
+<p><a target="_blank" rel="noopener" href="https://blog.esper.io/android-13-deep-dive/#qr_code_shortcut">https://blog.esper.io/android-13-deep-dive/#qr_code_shortcut</a></p>
+<p>2、一款基于Frida的系统调用hook脚本</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/apkunpacker/SyscallHooks/">https://github.com/apkunpacker/SyscallHooks/</a></p>
+<h3 id="2022-04-13"><a href="#2022-04-13" class="headerlink" title="2022.04.13"></a>2022.04.13</h3><p>1、基于LLVM编译器的IDA自动结构体分析插件</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272289.htm">https://bbs.pediy.com/thread-272289.htm</a></p>
+<p>2、maat 一个开源的动态符号执行二进制分析框架，同样<a target="_blank" rel="noopener" href="https://github.com/JonathanSalwan/Triton">triton</a>也是新晋的分析工具</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/trailofbits/maat">https://github.com/trailofbits/maat</a></p>
+<h3 id="2022-04-17"><a href="#2022-04-17" class="headerlink" title="2022.04.17"></a>2022.04.17</h3><p>1、微软公布的学习机器学习的指南</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/microsoft/ML-For-Beginners">https://github.com/microsoft/ML-For-Beginners</a></p>
+<p>2、11个挑战，对Qiling Framework框架入门</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-268989.htm">https://bbs.pediy.com/thread-268989.htm</a></p>
+<p>3、使用Qiling IDA插件解密Mirai病毒数据</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-262073.htm">https://bbs.pediy.com/thread-262073.htm</a></p>
+<p>4、浅析不同情况下的docker逃逸方法</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272324.htm">https://bbs.pediy.com/thread-272324.htm</a></p>
+<h3 id="2022-04-22"><a href="#2022-04-22" class="headerlink" title="2022.04.22"></a>2022.04.22</h3><p>1、科恩开源的静态分析的工具</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/KeenSecurityLab/BinAbsInspector">https://github.com/KeenSecurityLab/BinAbsInspector</a></p>
+<p><a target="_blank" rel="noopener" href="https://keenlab.tencent.com/zh/2022/04/20/2022-BinAbsInspector-public-release/">https://keenlab.tencent.com/zh/2022/04/20/2022-BinAbsInspector-public-release/</a></p>
+<p>2、how2heap深入浅出学习堆</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272416.htm">https://bbs.pediy.com/thread-272416.htm</a></p>
+<h3 id="2022-04-25"><a href="#2022-04-25" class="headerlink" title="2022.04.25"></a>2022.04.25</h3><p>1、基于xpoasd/Edxp hooklinker实现的So脱壳机</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272438.htm">https://bbs.pediy.com/thread-272438.htm</a></p>
+<p>2、Android APP漏洞之战（10）——调试与反调试详解</p>
+<p><a target="_blank" rel="noopener" href="https://bbs.pediy.com/thread-272452.htm">https://bbs.pediy.com/thread-272452.htm</a></p>
+<p>3、Attacking javascript engines in 2022</p>
+<p><a target="_blank" rel="noopener" href="https://saelo.github.io/presentations/offensivecon_22_attacking_javascript_engines.pdf">https://saelo.github.io/presentations/offensivecon_22_attacking_javascript_engines.pdf</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=FK2-1FAbbXA">https://www.youtube.com/watch?v=FK2-1FAbbXA</a></p>
+<p>4、awesome-hardware-tools</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/aolofsson/awesome-hardware-tools">https://github.com/aolofsson/awesome-hardware-tools</a></p>
+<p>5、ROP challenges 用来学习ROP</p>
+<p><a target="_blank" rel="noopener" href="https://ropemporium.com/index.html">https://ropemporium.com/index.html</a></p>
+<p>6、frida手册</p>
+<p><a target="_blank" rel="noopener" href="https://learnfrida.info/">https://learnfrida.info/</a></p>
+<h3 id="2022-04-26"><a href="#2022-04-26" class="headerlink" title="2022.04.26"></a>2022.04.26</h3><p>1、云安全资源汇总</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/teamssix/awesome-cloud-security">https://github.com/teamssix/awesome-cloud-security</a></p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/checklist/">checklist</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+                    
+                      <a class="hover-with-bg" href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Fuzzing/">Fuzzing</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2022/02/12/%E6%AF%8F%E6%97%A5checklist%EF%BC%882022.01.01-02.12%EF%BC%89/">
+                        <span class="hidden-mobile">每日checklist（2022.01.01-02.12）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+        typing(title);
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

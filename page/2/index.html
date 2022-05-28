@@ -7,12 +7,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
-  <link rel="icon" href="/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="John Doe">
@@ -27,15 +25,19 @@
 <meta name="twitter:card" content="summary_large_image">
   
   
+  
   <title>Theseus&#39;Blog</title>
 
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
 
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
 
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
 
 
 
@@ -44,21 +46,40 @@
 
 <link  rel="stylesheet" href="/css/main.css" />
 
-<!-- 自定义样式保持在最底部 -->
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
 
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.13","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
+
+  
 <meta name="generator" content="Hexo 5.4.0"></head>
 
 
 <body>
-  <header style="height: 100vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
       <strong>Theseus&#39;s Blog</strong>
@@ -134,24 +155,13 @@
             </li>
           
         
-          
-          
-          
-          
-            <li class="nav-item">
-              <a class="nav-link" href="/links/">
-                <i class="iconfont icon-link-fill"></i>
-                友链
-              </a>
-            </li>
-          
-        
         
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
+          
         
         
           <li class="nav-item" id="color-toggle-btn">
@@ -164,34 +174,40 @@
   </div>
 </nav>
 
-    <div class="banner" id="banner" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Welcome to Theseus&#39;s blog">
-              
-            </span>
+  
 
-            
-          </div>
-
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
           
-            <div class="scroll-down-bar">
-              <i class="iconfont icon-arrowdown"></i>
-            </div>
+            <span id="subtitle" data-typed-text="welcome to Theseus&#39;s Blog"></span>
           
         </div>
+
+        
       </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
     </div>
+  </div>
+</div>
+
+</div>
+
   </header>
 
   <main>
     
       <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          style=margin-top:0>
+        <div id="board"
+          style="margin-top: 0">
           
           <div class="container">
             <div class="row">
@@ -210,12 +226,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%884.23-6.04%EF%BC%89/" target="_self">
+      <a class="index-excerpt" href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%884.23-6.04%EF%BC%89/" target="_self">
+        <div>
           
           2021.04.23昨天了解到了fuzz技术，回来不就是为了学习挖洞，所以还是要开始整起来，看了泉哥的博客，发现了一些值得关注的学习点。 1、 fuzz实战之libfuzzer https:&#x2F;&#x2F;www.secpulse.com&#x2F;archives&#x2F;71898.html 这个是一个开源的fuzzer工具，并且也是附带了实际的例子存在，所以是一个了解入门fuzz技术的好路子。 2、frida在fazz中
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -227,26 +243,40 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/checklist/">checklist</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/checklist/" class="category-chain-item">checklist</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -265,12 +295,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%886.05-7.30%EF%BC%89/" target="_self">
+      <a class="index-excerpt" href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%886.05-7.30%EF%BC%89/" target="_self">
+        <div>
           
           2021.06.051、android NDK AES算法实现 https:&#x2F;&#x2F;www.jianshu.com&#x2F;p&#x2F;0390f598c34c https:&#x2F;&#x2F;github.com&#x2F;luck-apple&#x2F;aesTool 2、binutils中关于binary的工具 https:&#x2F;&#x2F;www.gnu.org&#x2F;software&#x2F;binutils&#x2F; 实习过程中研究过一点mqtt相关的安全研究 3、mqtt安
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -282,26 +312,40 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/checklist/">checklist</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/checklist/" class="category-chain-item">checklist</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -320,12 +364,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%888.02-10.06%EF%BC%89/" target="_self">
+      <a class="index-excerpt" href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%888.02-10.06%EF%BC%89/" target="_self">
+        <div>
           
           2021.08.021、实现简单Android inline hook https:&#x2F;&#x2F;www.52pojie.cn&#x2F;thread-1499227-1-1.html 2021.08.031、某商超小程序加密算法分析 https:&#x2F;&#x2F;www.52pojie.cn&#x2F;thread-1474964-1-1.html 2、滑块加密分析 https:&#x2F;&#x2F;www.52pojie.cn&#x2F;thread-147960
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -337,26 +381,40 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/checklist/">checklist</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/checklist/" class="category-chain-item">checklist</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -375,12 +433,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%8810.06-11.14%EF%BC%89/" target="_self">
+      <a class="index-excerpt" href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%8810.06-11.14%EF%BC%89/" target="_self">
+        <div>
           
           2021.10.061、使用rust写得一款新的符号执行与污点分析框架 https:&#x2F;&#x2F;github.com&#x2F;aemmitt-ns&#x2F;radius 可以用于逆向工程和模糊执行 2、一款关于owasp上漏洞的靶场 https:&#x2F;&#x2F;github.com&#x2F;juice-shop&#x2F;juice-shop 尽管漏洞很多是web的漏洞 3、一篇关于堆的利用的文章，内容很全面，根据真实的漏洞案例分析 https:&#x2F;&#x2F;
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -392,26 +450,40 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/checklist/">checklist</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/checklist/" class="category-chain-item">checklist</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -430,12 +502,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%8811.12-12.31%EF%BC%89/" target="_self">
+      <a class="index-excerpt" href="/2022/01/05/%E6%AF%8F%E6%97%A5checklist%EF%BC%8811.12-12.31%EF%BC%89/" target="_self">
+        <div>
           
           2021.11.12离职阿里，结束了一段实习生活，很好又体验了一个新的方向，不过内心中还是有一个梦想就是挖洞，所以借着去字节的空窗期，专心的研究挖洞和专题体系知识。 2021.11.141、关于IOS、macos相关的安全漏洞的收集资料 https:&#x2F;&#x2F;github.com&#x2F;houjingyi233&#x2F;macOS-iOS-system-security 2021.11.181、seedlab Ret
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -447,26 +519,40 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/checklist/">checklist</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/checklist/" class="category-chain-item">checklist</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -485,12 +571,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/24/checklist%E2%80%94%E2%80%94%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" target="_self">
+      <a class="index-excerpt" href="/2021/12/24/checklist%E2%80%94%E2%80%94%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" target="_self">
+        <div>
           
           前言该checklist是专门服务于闭关这三个月，主要是记录与漏洞挖掘相关的内容，同时也会把之前收集的与漏洞挖掘相关的内容归类于此，便于学习和查看。 2020.10.201、通过CTF学习Android漏洞，实战dozer https:&#x2F;&#x2F;bbs.pediy.com&#x2F;thread-261854.htm 2020.11.171、Android 本地拒绝服务漏洞 https:&#x2F;&#x2F;blogs.360.c
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -502,24 +588,38 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" class="category-chain-item">漏洞挖掘</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -538,12 +638,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/24/%E4%BC%98%E7%A7%80%E9%A1%B9%E7%9B%AE%E6%94%B6%E9%9B%86/" target="_self">
+      <a class="index-excerpt" href="/2021/12/24/%E4%BC%98%E7%A7%80%E9%A1%B9%E7%9B%AE%E6%94%B6%E9%9B%86/" target="_self">
+        <div>
           
           相关项目收集 ADVMP 一款七年前实现的vmp加固工具 DCC 一款比较新的dex2c的加固工具 nmmp 针对dex进行的vmp的保护 Android Dex-vmp虚拟保护技术 Dex控制流混淆 BlackObfuscator DeClang 一款基于ollvm的混淆工具 kisskiss 基于特征识别的内存转储脱壳方法 zjdroid 基于 Xposed 的动态逆向分析框架 Dexhunt
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -555,22 +655,36 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/Android%E5%AE%89%E5%85%A8/">Android安全</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Android%E5%AE%89%E5%85%A8/" class="category-chain-item">Android安全</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Android%E5%8A%A0%E5%9B%BA/">Android加固</a>
+              <a href="/tags/Android%E5%8A%A0%E5%9B%BA/">#Android加固</a>
             
-              <a href="/tags/Android%E8%84%B1%E5%A3%B3/">Android脱壳</a>
+              <a href="/tags/Android%E8%84%B1%E5%A3%B3/">#Android脱壳</a>
             
           </div>
         
@@ -589,12 +703,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/24/2021%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92%E2%80%94%E2%80%9412%E6%9C%88/" target="_self">
+      <a class="index-excerpt" href="/2021/12/24/2021%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%AE%A1%E5%88%92%E2%80%94%E2%80%9412%E6%9C%88/" target="_self">
+        <div>
           
           前言这个就是来作为论文阅读的计划表，根据搜集的符合自身发展方向以及感兴趣的。论文阅读这这里基本上就是已经完成过大致浏览，都是经过筛选。 基本上涉及的内容如下  1、Android加固、保护、脱壳相关 2、Android自动化相关、自动化恶意检测相关 3、ML、DL应用于二进制相关的论文 4、其他感兴趣的，暂时没有分类的  阅读要求 精读论文，提炼出论文的核心技术和知识点  通过检索网站去寻求该论文
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -606,26 +720,40 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E8%AE%BA%E6%96%87%E8%AE%A1%E5%88%92/">论文计划</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%AE%BA%E6%96%87%E8%AE%A1%E5%88%92/" class="category-chain-item">论文计划</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -644,12 +772,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/24/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8C%87%E5%8D%97/" target="_self">
+      <a class="index-excerpt" href="/2021/12/24/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8C%87%E5%8D%97/" target="_self">
+        <div>
           
           前言既然本文档的标题是漏洞挖掘指南，那为了后续更加方便学习，因此在这里就来好好的做一版漏洞挖掘指南。 基础篇 涉及的主要是大学中的计算机基本课程，夯实计算机基础。  C++与STL内容 编程是学习漏洞挖掘和代码审计最基础的技能,参考笔记：https:&#x2F;&#x2F;github.com&#x2F;Kiprey&#x2F;Skr_Learning&#x2F;tree&#x2F;master&#x2F;week1-2  学习STL无疑是学习侯捷的课程，不会的查看
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -661,26 +789,40 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/" class="category-chain-item">漏洞挖掘</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">漏洞挖掘</a>
+              <a href="/tags/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98/">#漏洞挖掘</a>
             
-              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">IOT安全</a>
+              <a href="/tags/IOT%E5%AE%89%E5%85%A8/">#IOT安全</a>
             
-              <a href="/tags/Android%E5%AE%89%E5%85%A8/">Android安全</a>
+              <a href="/tags/Android%E5%AE%89%E5%85%A8/">#Android安全</a>
             
-              <a href="/tags/Fuzzing/">Fuzzing</a>
+              <a href="/tags/Fuzzing/">#Fuzzing</a>
             
           </div>
         
@@ -699,12 +841,12 @@
         </a>
       </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" target="_self">
+      <a class="index-excerpt" href="/2021/12/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/" target="_self">
+        <div>
           
           最近又收集了蛮对这块的学习资料和教程，过段时间重构一下这个指南 （2022.03025） 现在可能并没有太多时间来专研这块，不过可以当做是自己的一个计划表吧，所以在这里做一个资料收集的目录，为以后学习铺一点路。该文案主要是收集以下内容：  1、深度学习入门资料 2、图像识别 3、智能风控 4、AI算法 5、深度学习框架库的使用 6、人工智能&#x2F;深度学习在安全方面的应用 7、机器学习  前言学习这一大
-        </a>
-      </p>
+        </div>
+      </a>
 
       <div class="index-btm post-metas">
         
@@ -716,22 +858,36 @@
           </div>
         
         
-          <div class="post-meta mr-3">
+          <div class="post-meta mr-3 d-flex align-items-center">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
-            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" class="category-chain-item">人工智能</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
           </div>
         
         
           <div class="post-meta">
             <i class="iconfont icon-tags"></i>
             
-              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">学习指南</a>
+              <a href="/tags/%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/">#学习指南</a>
             
-              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+              <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">#机器学习</a>
             
-              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+              <a href="/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">#深度学习</a>
             
           </div>
         
@@ -776,35 +932,37 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
         </div>
         <div class="list-group" id="local-search-result"></div>
       </div>
     </div>
   </div>
 </div>
+
     
 
     
   </main>
 
-  <footer class="text-center mt-5 py-3">
-  <div class="footer-content">
-     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
-  </div>
+  <footer>
+    <div class="footer-inner">
   
-
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
   
-
   
-</footer>
-
-
-  <!-- SCRIPTS -->
   
-  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
   <script>
     NProgress.configure({"showSpinner":false,"trickleSpeed":100})
@@ -815,42 +973,23 @@
   </script>
 
 
-<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
-<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
-<!-- Plugins -->
 
-
-  <script  src="/js/local-search.js" ></script>
-
-
-
-  
-    <script  src="/js/img-lazyload.js" ></script>
-  
-
-
-
-  
-
-
-
-
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
-
-
-
-
-  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
   <script>
     (function (window, document) {
       var typing = Fluid.plugins.typing;
-      var title = document.getElementById('subtitle').title;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
       
-        typing(title);
+        typing(text);
       
     })(window, document);
   </script>
@@ -860,18 +999,28 @@
 
 
 
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/js/local-search.js" ></script>
 
 
 
 
 
-
-
-
-
-<!-- 主题的启动项 保持在最底部 -->
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
 <script  src="/js/boot.js" ></script>
 
 
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
 </body>
 </html>

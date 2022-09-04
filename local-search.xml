@@ -4,11 +4,40 @@
   
   
   <entry>
+    <title>名校课程学习指南</title>
+    <link href="/2022/09/05/%E5%90%8D%E6%A0%A1%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/"/>
+    <url>/2022/09/05/%E5%90%8D%E6%A0%A1%E8%AF%BE%E7%A8%8B%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97/</url>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p><strong>！！！详细内容请直接访问语雀文档：</strong></p><p><a href="https://www.yuque.com/docs/share/9f2e6bb6-2d2a-46f8-9a69-376963e96a45#">https://www.yuque.com/docs/share/9f2e6bb6-2d2a-46f8-9a69-376963e96a45?#</a> 《名校课程学习指南》</p><p>该项目主要用来记录名校课程的学习指南，发现国内外名校的资源确实非常的不错，能够从中学习到很多很有意思的知识点。国内对计算机的开源程度也是越来越开放，涌现了大量非常不错的课程内容。</p><p>目前只收集国内外大学课程，不收录培训班的课程</p><p>参考资源</p><blockquote><p>1、CS自学指南：<a href="https://csdiy.wiki/">https://csdiy.wiki/</a></p><p>2、漏洞挖掘指南：<a href="https://www.theseus.top/2021/12/24/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8C%87%E5%8D%97/">https://www.theseus.top/2021/12/24/%E6%BC%8F%E6%B4%9E%E6%8C%96%E6%8E%98%E6%8C%87%E5%8D%97/</a></p></blockquote><p>为了能够更加好的利用这些资源，在这里对这些内容进行汇总，同时也是对自己的一种计划。希望能够将这项目推动下去，能够坚持的写笔记，成体系的去学习感兴趣的计算机课程。</p><p><strong>为了能够及时的获取到更新的内容，这里采用语雀文档来进行更新。</strong></p><p><a href="https://www.yuque.com/docs/share/9f2e6bb6-2d2a-46f8-9a69-376963e96a45#">https://www.yuque.com/docs/share/9f2e6bb6-2d2a-46f8-9a69-376963e96a45?#</a> 《名校课程学习指南》</p><h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>我相信还有很多优秀的课程可以学习，当然上图中的这些课程也仅仅是一家之言，并不一定适合所有人，如果你有更加好的课程，可以在评论中告诉我或者直接联系我也是ok，我们共同努力完善该内容。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>CS学习</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>学习指南</tag>
+      
+      <tag>漏洞挖掘</tag>
+      
+      <tag>Android安全</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>对大学四年的总结</title>
     <link href="/2022/06/13/%E5%AF%B9%E5%A4%A7%E5%AD%A6%E5%9B%9B%E5%B9%B4%E7%9A%84%E6%80%BB%E7%BB%93/"/>
     <url>/2022/06/13/%E5%AF%B9%E5%A4%A7%E5%AD%A6%E5%9B%9B%E5%B9%B4%E7%9A%84%E6%80%BB%E7%BB%93/</url>
     
-    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大学四年匆匆而过，我相信本科四年应该是很多人难以忘怀的时光，因为这是一条从校园踏入社会分水岭。有些人带着高中时候的梦想、带着进入这所大学的不甘毅然决然的选择考研，我很敬佩这些人，有着对梦想追逐的勇气，有着明确的人生目标。同样有些人坚定踏入社会，进入企业或者体制内，这些人也是值得敬佩，水流终入大海。当然还会存在一部分人是受挫之人，考研或者保研落榜，工作未定，这部分人我想也同样值得尊敬，至少都为之拼搏过。</p>]]></content>
+    <content type="html"><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>大学四年匆匆而过，我相信本科四年应该是很多人难以忘怀的时光，因为这是一条从校园踏入社会分水岭。有些人带着高中时候的梦想、带着进入这所大学的不甘毅然决然的选择考研，我很敬佩这些人，有着对梦想追逐的勇气，有着明确的人生目标。同样有些人坚定踏入社会，进入企业或者体制内，这些人也是值得敬佩，水流终入大海。当然还会存在一部分人是受挫之人，考研或者保研落榜，工作未定，这部分人我想也同样值得尊敬，至少都为之拼搏过。</p><h3 id="第一章"><a href="#第一章" class="headerlink" title="第一章"></a>第一章</h3><p>我想着，这个总结我还是按照时间顺序来进行叙述吧，这样可能会更加有参考意义。每一章对应着每个学年，记录自己如何学习，如何选择方向，又是如何给自己做规划。</p>]]></content>
     
     
     <categories>
